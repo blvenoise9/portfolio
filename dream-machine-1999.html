@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Machine 1999 Journal App - Rita Xiong</title>
+    <link rel="stylesheet" href="src/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .project-detail {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+        
+        .project-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .project-hero-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 2rem auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .meta-item h4 {
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .meta-item p {
+            color: #e5e7eb;
+            margin: 0;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .section-content {
+            margin-bottom: 3rem;
+        }
+        
+        .section-content h3 {
+            color: #3b82f6;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .section-content p {
+            color: #d1d5db;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .section-content ul {
+            color: #d1d5db;
+            line-height: 1.7;
+            margin-left: 2rem;
+        }
+        
+        .section-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .back-button:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateX(-2px);
+        }
+        
+        .highlight-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .highlight-box h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-box p {
+            color: #d1d5db;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Star Background -->
+    <div class="star-background"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">RX009</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
+                <li><a href="index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Detail Section -->
+    <section class="project-detail">
+        <div class="container">
+            <a href="index.html#projects" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Projects
+            </a>
+            
+            <div class="project-header">
+                <h1 class="section-title">Dream Machine 1999 Journal App</h1>
+                <p class="section-subtitle">A minimal iOS journaling app for capturing life's fleeting moments</p>
+                <img src="images/dream-machine.png" alt="Dream Machine 1999 Journal App Cover" class="project-hero-image">
+            </div>
+
+            <div class="project-content">
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <h4>Project Type</h4>
+                        <p>Digital Journal Application</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Platform</h4>
+                        <p>iOS App (Xcode)</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Status</h4>
+                        <p>Functional App</p>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <h3>Inspiration</h3>
+                    <p>
+                        This app is born from my own journaling habit. I often find myself wanting to capture small, fleeting moments when I don't have paper or a pen nearby. Instead of posting these thoughts on social media, I wanted a space just for myself—a place to record and preserve memories that might otherwise slip away when life gets busy.
+                    </p>
+                    <p>
+                        Unlike traditional journaling apps that focus on long-form writing, DreamMachine 1999 is designed for quick captures: a photo, a sentence, a passing thought, to help you hold onto the little moments.
+                    </p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Design Philosophy</h4>
+                    <p>
+                        The app's name and logo are inspired by Salvador Dalí's "The Persistence of Memory," reflecting the fleeting, dreamlike nature of time and memory. DreamMachine 1999 is my personal attempt to freeze these ephemeral experiences, not for an audience, but for myself.
+                    </p>
+                </div>
+
+                <div class="section-content">
+                    <h3>Features</h3>
+                    <p>
+                        Keeping things minimal and distraction-free, the app includes three core functions:
+                    </p>
+                    <ul>
+                        <li><strong>Home:</strong> View today's entry</li>
+                        <li><strong>Add Entry:</strong> Quickly jot down a thought and upload photos</li>
+                        <li><strong>Memories:</strong> Browse your past entries</li>
+                    </ul>
+                </div>
+
+                <div class="section-content">
+                    <h3>What You Can Do</h3>
+                    <ul>
+                        <li>Create journal entries with rich text and multiple images</li>
+                        <li>Upload several images per entry with built-in file support</li>
+                        <li>Browse and revisit all past entries in the Memories tab</li>
+                        <li>Store everything locally—data remains private and offline using a lightweight JSON database</li>
+                    </ul>
+                </div>
+
+                <div class="section-content">
+                    <h3>Tech Stack</h3>
+                    <p>
+                        The app is currently implemented on Xcode using modern development technologies:
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React 18</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">TailwindCSS</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">LowDB</span>
+                        <span class="tech-tag">Multer</span>
+                        <span class="tech-tag">iOS Development</span>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <h3>Development Approach</h3>
+                    <p>
+                        The development focused on creating a minimal, distraction-free experience that prioritizes quick capture over complex features. The choice of LowDB (file-based JSON storage) ensures that all data remains private and offline, addressing the core need for a personal, non-social journaling space.
+                    </p>
+                    <p>
+                        The retro theme, implemented with custom TailwindCSS styling, pays homage to the nostalgic "1999" aesthetic while maintaining modern usability standards. The iOS implementation allows for seamless integration with the device's camera and file system.
+                    </p>
+                </div>
+
+                <div class="section-content">
+                    <h3>Personal Impact</h3>
+                    <p>
+                        This app represents a shift from public social media sharing to private reflection. By focusing on "little moments" rather than significant events, DreamMachine 1999 encourages mindfulness and helps preserve the fleeting thoughts and experiences that make up daily life.
+                    </p>
+                </div>
+
+                <div class="section-content">
+                    <h3>Demo Video</h3>
+                    <p>
+                        Watch the app in action! This demo showcases the quick capture workflow and memory browsing experience.
+                    </p>
+                    
+                    <!-- YouTube Embed -->
+                    <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 2rem 0; border-radius: 8px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);">
+                        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;" 
+                                src="https://www.youtube.com/embed/Jer6xe_R6bw" 
+                                frameborder="0" 
+                                allowfullscreen
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Rita Xiong. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" aria-label="Kaggle">
+                    <i class="fab fa-kaggle"></i>
+                </a>
+                <a href="#" aria-label="Medium">
+                    <i class="fab fa-medium"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="src/js/script.js"></script>
+</body>
+</html> 
+</html> 
