@@ -1,6 +1,4 @@
-# 📸 Images Directory
-
-Place your project images here!
+# Images Directory
 
 ## Recommended Image Sizes
 
@@ -17,7 +15,6 @@ Use descriptive names:
 - `mobile-app-login.jpg`
 
 ## How to Add Images
-
 1. **Save your images** in this folder
 2. **Update the HTML** in `index.html`:
 
@@ -29,12 +26,6 @@ Use descriptive names:
 ```
 
 ## Image Optimization Tips
-
-### Before adding images:
-- Compress them using tools like TinyPNG
-- Resize to recommended dimensions
-- Use descriptive alt text for accessibility
-- Consider using WebP format for better compression
 
 ### Quick Optimization Tools:
 - **Online**: TinyPNG, ImageOptim, Squoosh
@@ -50,5 +41,3 @@ images/
 ├── project3-admin.png
 └── profile-photo.jpg
 ```
-
-Happy designing! 🎨 

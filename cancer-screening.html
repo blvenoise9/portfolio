@@ -235,26 +235,18 @@
                         <p>Public Health Analytics</p>
                     </div>
                     <div class="meta-item">
-                        <h4>Team Size</h4>
-                        <p>4 members</p>
-                    </div>
-                    <div class="meta-item">
-                        <h4>Domain</h4>
-                        <p>Healthcare & Data Science</p>
-                    </div>
-                    <div class="meta-item">
                         <h4>Tools</h4>
-                        <p>Python, Pandas, Jupyter</p>
+                        <p>Python, Figma</p>
                     </div>
                 </div>
                 
                 <div class="project-section">
                     <h3>Project Overview</h3>
                     <p>
-                        Designed a data-driven reminder system to promote timely cancer screening based on individual risk factors such as age, sex, and ethnicity. The project focused on improving screening rates by tailoring reminders to underserved populations using public health data.
+                        The Cancer Screening Reminder System is a data-driven initiative designed to improve cancer screening rates through personalized reminders based on individual risk factors like age, sex, ethnicity, and family history.
                     </p>
                     <p>
-                        This project highlights the use of data analytics to support early cancer detection and reduce disparities in preventive healthcare access, particularly focusing on medically underserved communities.
+                        The project focuses on addressing healthcare disparities by prioritizing screening reminders for medically underserved communities, promoting early cancer detection, and improving overall healthcare access.
                     </p>
                 </div>
                 
@@ -272,26 +264,9 @@
                             <div class="contribution-icon">
                                 <i class="fas fa-database"></i>
                             </div>
-                            <h4>Data Analysis</h4>
+                            <h4>Analysis</h4>
                             <p>
                                 Analyzed California Cancer Registry datasets on cancer incidence by demographic groups to identify patterns and risk factors.
-                            </p>
-                        </div>
-                        <div class="contribution-card">
-                            <div class="contribution-icon">
-                                <i class="fas fa-broom"></i>
-                            </div>
-                            <h4>Data Processing</h4>
-                            <p>
-                                Processed and cleaned data to identify high-risk age groups for breast, cervical, colorectal, and lung cancer screenings.
-                            </p>
-                        </div>
-                        <div class="contribution-card">
-                            <div class="contribution-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <h4>Algorithm Development</h4>
-                            <p>
                                 Developed logic for personalized screening recommendations based on national guidelines (USPSTF).
                             </p>
                         </div>
@@ -304,14 +279,6 @@
                                 Built the foundation for a user interface that generates age-specific screening reminders.
                             </p>
                         </div>
-                        <div class="contribution-card">
-                            <div class="contribution-icon">
-                                <i class="fas fa-balance-scale"></i>
-                            </div>
-                            <h4>Health Equity Focus</h4>
-                            <p>
-                                Focused on addressing health disparities by prioritizing reminders for medically underserved communities.
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -325,24 +292,6 @@
                             This prototype showcases how users can receive personalized screening recommendations based on their individual risk factors.
                         </p>
                         <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                            <div style="background: rgba(59, 130, 246, 0.1); padding: 0.75rem 1.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.2);">
-                                <span style="color: #3b82f6; font-weight: 500;">
-                                    <i class="fas fa-user-cog" style="margin-right: 0.5rem;"></i>
-                                    Personalized Recommendations
-                                </span>
-                            </div>
-                            <div style="background: rgba(59, 130, 246, 0.1); padding: 0.75rem 1.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.2);">
-                                <span style="color: #3b82f6; font-weight: 500;">
-                                    <i class="fas fa-mobile-alt" style="margin-right: 0.5rem;"></i>
-                                    Mobile-First Design
-                                </span>
-                            </div>
-                            <div style="background: rgba(59, 130, 246, 0.1); padding: 0.75rem 1.5rem; border-radius: 20px; border: 1px solid rgba(59, 130, 246, 0.2);">
-                                <span style="color: #3b82f6; font-weight: 500;">
-                                    <i class="fas fa-calendar-check" style="margin-right: 0.5rem;"></i>
-                                    Reminder System
-                                </span>
-                            </div>
                         </div>
                     </div>
                     
@@ -404,37 +353,11 @@
                 
                 <div class="project-section">
                     <h3>Code Implementation</h3>
-                    <p>Sample screening logic demonstrating the personalized recommendation algorithm:</p>
-                    <div class="code-block">
-                        <code># Personalized screening recommendation logic
-def generate_screening_recommendations(age, sex, ethnicity, risk_factors):
-    recommendations = []
-    
-    # Breast cancer screening
-    if sex == 'female' and age >= 40:
-        if age >= 50 or 'family_history' in risk_factors:
-            recommendations.append({
-                'type': 'breast_cancer',
-                'test': 'mammography',
-                'frequency': 'annual',
-                'priority': 'high' if ethnicity in high_risk_groups else 'standard'
-            })
-    
-    # Cervical cancer screening
-    if sex == 'female' and 21 <= age <= 65:
-        recommendations.append({
-            'type': 'cervical_cancer',
-            'test': 'pap_smear',
-            'frequency': 'every_3_years',
-            'priority': 'high' if ethnicity in underserved_groups else 'standard'
-        })
-    
-    return recommendations</code>
                     </div>
                     <div style="text-align: center; margin-top: 2rem;">
                         <a href="https://colab.research.google.com/drive/1fdGL-RDmj4mRwZk03XSyGvwA6SIrpOlL#scrollTo=wdR-oWb9Vdve&line=1&uniqifier=1" target="_blank" class="btn btn-primary">
                             <i class="fab fa-google"></i>
-                            View Full Code on Google Colab
+                            View Full Logic on Google Colab
                         </a>
                     </div>
                 </div>
@@ -455,8 +378,7 @@ def generate_screening_recommendations(age, sex, ethnicity, risk_factors):
                 <div class="highlight-box">
                     <h4>Impact & Learning</h4>
                     <p>
-                        This project demonstrates how data analytics can be leveraged to support early cancer detection and reduce disparities in preventive healthcare access. Through this work, I gained experience in public health data analysis, algorithm development for healthcare applications, and designing user-centered health technology solutions.
-                    </p>
+                        While working with publicly available health data has its limitations, I gained valuable experience using Figma to design a user-friendly interface and creating personalized reminders. Moving forward, this could be expanded by integrating more real-time data or applying similar approaches to other areas of preventive healthcare.
                 </div>
             </div>
         </div>
