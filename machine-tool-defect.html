@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Tool Defect Detection - Rita Xiong Portfolio</title>
+    <link rel="stylesheet" href="src/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .project-detail {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+        
+        .project-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .project-hero-image {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 2rem auto;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(17, 24, 39, 0.8);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .meta-item h4 {
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .meta-item p {
+            color: #d1d5db;
+            margin: 0;
+        }
+        
+        .project-section {
+            margin-bottom: 3rem;
+        }
+        
+        .project-section h3 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 0.5rem;
+        }
+        
+        .project-section p, .project-section li {
+            color: #d1d5db;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .project-section ul {
+            padding-left: 2rem;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 100px;
+            left: 40px;
+            background: rgba(59, 130, 246, 0.9);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .back-button:hover {
+            background: rgba(59, 130, 246, 1);
+            transform: translateX(-5px);
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+        
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.9);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .github-link:hover {
+            background: rgba(59, 130, 246, 1);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .back-button {
+                position: static;
+                margin: 1rem auto;
+                width: fit-content;
+            }
+            
+            .project-content {
+                padding: 1.5rem;
+            }
+            
+            .project-meta {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Star Background -->
+    <div class="star-background"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">RX009</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
+                <li><a href="index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <a href="index.html#projects" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back to Projects
+    </a>
+
+    <!-- Project Detail -->
+    <section class="project-detail">
+        <div class="container">
+            <div class="project-header">
+                <h1 style="color: #ffffff; font-size: 2.5rem; margin-bottom: 1rem;">
+                    Manufacturing Machine Tool Defect Detection
+                </h1>
+                <p style="color: #9ca3af; font-size: 1.2rem;">
+                    Product-level detection of vibration-induced surface defects using sensor signal analysis
+                </p>
+                
+                <img src="images/machine-tool.png" alt="CNC Machine Tool Analysis" class="project-hero-image">  
+            </div>
+
+            <div class="project-content">
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <h4>Project Type</h4>
+                        <p>Manufacturing Analytics</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Domain</h4>
+                        <p>Industrial IoT & Quality Control</p>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3>Overview</h3>
+                    <p>
+                        This project focuses on detecting vibration-induced surface defects in CNC machining using machine sensor signals. 
+                        The analysis leverages vibration acceleration, actual position, and load current data to identify abnormal machining 
+                        behavior associated with surface defects at the product level.
+                    </p>
+                    <p>
+                        Working with a CNC drilling/tapping machine finishing outer contours, the goal was to develop a data-driven approach 
+                        to quality control that could identify defective products before they reach manual inspection stages.
+                    </p>
+                </div>
+
+                <div class="project-section">
+                    <h3>Challenge</h3>
+                    <p>
+                        Surface defects in precision manufacturing are costly and time-consuming to identify through manual inspection. 
+                        The challenge was to:
+                    </p>
+                    <ul>
+                        <li>Distinguish between normal operational variation and actual defect-causing behavior</li>
+                        <li>Work with limited labeled data (only 2 defective samples vs. 30 normal samples)</li>
+                        <li>Handle high-dimensional time-series sensor data from industrial equipment</li>
+                        <li>Develop insights that could be actionable for manufacturing operations</li>
+                    </ul>
+                </div>
+
+                <div class="project-section">
+                    <h3>Data & Methodology</h3>
+                    <p><strong>Data Sources:</strong></p>
+                    <ul>
+                        <li><strong>Vibration Acceleration:</strong> Real-time vibration measurements during machining</li>
+                        <li><strong>Actual Position:</strong> X, Y, Z axis position tracking throughout the process</li>
+                        <li><strong>Load Current:</strong> Motor load current indicating cutting forces</li>
+                    </ul>
+                    
+                    <p><strong>Data Granularity:</strong></p>
+                    <ul>
+                        <li>One file per complete product machining session, containing:
+                            30 normal machining runs (unlabeled), 
+                            1 idle run (Z-axis raised, same G-code without cutting), 
+                            2 defect runs (products with vibration marks identified via manual inspection).</li>
+                    </ul>
+                    
+                    <p><strong>Analysis Approach:</strong></p>
+                    <ul>
+                        <li><strong>Signal Preprocessing:</strong> Data cleaning, alignment, and noise reduction across multiple sensor streams</li>
+                        <li><strong>Feature Engineering:</strong> Time-domain and frequency-domain feature extraction from sensor signals</li>
+                        <li><strong>Comparative Analysis:</strong> Statistical comparison across normal, idle, and defect runs</li>
+                        <li><strong>Pattern Recognition:</strong> Identification of signature patterns in defective vs. normal products</li>
+                        <li><strong>Product-level Detection:</strong> Aggregating sensor insights for whole-product quality assessment</li>
+                    </ul>
+                </div>
+
+                <div class="project-section">
+                    <h3>Key Insights</h3>
+                    <ul>
+                        <li>Identified distinctive vibration patterns in frequency domain that correlate with surface defects. 
+                        Discovered specific load current anomalies occurring during defective product machining.
+                        Developed a comparative baseline using idle runs to distinguish cutting-related vs. mechanical vibrations.
+                        Created product-level feature profiles that could be used for automated quality screening.
+                        Demonstrated feasibility of sensor-based defect detection even with limited defect samples.</li>
+                    </ul>
+                </div>
+
+                <div class="project-section">
+                    <h3>Impact & Applications</h3>
+                    <p>
+                        This analysis provides a foundation for implementing real-time quality monitoring in manufacturing:
+                    </p>
+                    <ul>
+                        <li><strong>Early Detection:</strong> Potential to identify defects during machining rather than post-production</li>
+                        <li><strong>Cost Reduction:</strong> Minimize waste and rework by catching defects immediately</li>
+                        <li><strong>Process Optimization:</strong> Insights into machining parameters that lead to defects</li>
+                        <li><strong>Predictive Maintenance:</strong> Unusual patterns could indicate machine tool degradation</li>
+                    </ul>
+                </div>
+
+                <div class="project-section">
+                    <h3>Data Confidentiality Note</h3>
+                    <p>
+                        Raw sensor data is not included in the public repository due to company confidentiality agreements. 
+                        The GitHub repository shares the analysis workflow, methodology, and code structure while protecting 
+                        proprietary manufacturing data.
+                    </p>
+                </div>
+
+                <a href="https://github.com/blvenoise9/machinetool_defect" target="_blank" class="github-link">
+                    <i class="fab fa-github"></i>
+                    Explore the Code & Methodology
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Rita Xiong. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" aria-label="Kaggle">
+                    <i class="fab fa-kaggle"></i>
+                </a>
+                <a href="#" aria-label="Medium">
+                    <i class="fab fa-medium"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="src/js/script.js"></script>
+</body>
+</html>
