@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         .project-detail {
-            padding: 120px 0 80px;
+            padding: 60px 0 80px;
             min-height: 100vh;
         }
         
@@ -68,8 +68,17 @@
             color: #ffffff;
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            border-bottom: 2px solid #3b82f6;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0;
+        }
+
+        .project-section h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: #3b82f6;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
         }
         
         .project-section p, .project-section li {
@@ -158,28 +167,10 @@
     <!-- Star Background -->
     <div class="star-background"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">RX009</a>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html#home" class="nav-link">Home</a></li>
-                <li><a href="index.html#about" class="nav-link">About</a></li>
-                <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
-                <li><a href="index.html#skills" class="nav-link">Skills</a></li>
-                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
 
-    <a href="index.html#projects" class="back-button">
+    <a href="index.html?openDesktop=true" class="back-button">
         <i class="fas fa-arrow-left"></i>
-        Back to Projects
+        Back to Desktop
     </a>
 
     <!-- Project Detail -->
@@ -211,87 +202,22 @@
                 <div class="project-section">
                     <h3>Overview</h3>
                     <p>
-                        This project focuses on detecting vibration-induced surface defects in CNC machining using machine sensor signals. 
-                        The analysis leverages vibration acceleration, actual position, and load current data to identify abnormal machining 
-                        behavior associated with surface defects at the product level.
+                        Surface defects in precision manufacturing are costly, hard to catch, and typically discovered too late — through manual inspection after the damage is done. I built a data-driven pipeline to detect vibration-induced defects in CNC machining using raw sensor signals, with the goal of flagging defective products before they ever reach inspection.
                     </p>
+
+                    <h3>What I Built</h3>
                     <p>
-                        Working with a CNC drilling/tapping machine finishing outer contours, the goal was to develop a data-driven approach 
-                        to quality control that could identify defective products before they reach manual inspection stages.
+                        Working with data from a CNC drilling/tapping machine, I analyzed three sensor streams — vibration acceleration, axis position (X, Y, Z), and motor load current — across 30 normal runs, 2 defective runs, and 1 idle baseline run. I handled signal preprocessing, feature engineering in both time and frequency domains, and built a comparative analysis framework to isolate defect-specific patterns from normal operational noise.
                     </p>
-                </div>
 
-                <div class="project-section">
-                    <h3>Challenge</h3>
+                    <h3>Results</h3>
                     <p>
-                        Surface defects in precision manufacturing are costly and time-consuming to identify through manual inspection. 
-                        The challenge was to:
+                        Despite having only 2 defective samples, I identified distinctive frequency-domain vibration signatures and load current anomalies that consistently separated defective runs from normal ones. Using the idle run as a mechanical baseline, I was also able to distinguish cutting-related vibrations from background machine noise — a key step toward reliable detection.
                     </p>
-                    <ul>
-                        <li>Distinguish between normal operational variation and actual defect-causing behavior</li>
-                        <li>Work with limited labeled data (only 2 defective samples vs. 30 normal samples)</li>
-                        <li>Handle high-dimensional time-series sensor data from industrial equipment</li>
-                        <li>Develop insights that could be actionable for manufacturing operations</li>
-                    </ul>
-                </div>
 
-                <div class="project-section">
-                    <h3>Data & Methodology</h3>
-                    <p><strong>Data Sources:</strong></p>
-                    <ul>
-                        <li><strong>Vibration Acceleration:</strong> Real-time vibration measurements during machining</li>
-                        <li><strong>Actual Position:</strong> X, Y, Z axis position tracking throughout the process</li>
-                        <li><strong>Load Current:</strong> Motor load current indicating cutting forces</li>
-                    </ul>
-                    
-                    <p><strong>Data Granularity:</strong></p>
-                    <ul>
-                        <li>One file per complete product machining session, containing:
-                            30 normal machining runs (unlabeled), 
-                            1 idle run (Z-axis raised, same G-code without cutting), 
-                            2 defect runs (products with vibration marks identified via manual inspection).</li>
-                    </ul>
-                    
-                    <p><strong>Analysis Approach:</strong></p>
-                    <ul>
-                        <li><strong>Signal Preprocessing:</strong> Data cleaning, alignment, and noise reduction across multiple sensor streams</li>
-                        <li><strong>Feature Engineering:</strong> Time-domain and frequency-domain feature extraction from sensor signals</li>
-                        <li><strong>Comparative Analysis:</strong> Statistical comparison across normal, idle, and defect runs</li>
-                        <li><strong>Pattern Recognition:</strong> Identification of signature patterns in defective vs. normal products</li>
-                        <li><strong>Product-level Detection:</strong> Aggregating sensor insights for whole-product quality assessment</li>
-                    </ul>
-                </div>
-
-                <div class="project-section">
-                    <h3>Key Insights</h3>
-                    <ul>
-                        <li>Identified distinctive vibration patterns in frequency domain that correlate with surface defects. 
-                        Discovered specific load current anomalies occurring during defective product machining.
-                        Developed a comparative baseline using idle runs to distinguish cutting-related vs. mechanical vibrations.
-                        Created product-level feature profiles that could be used for automated quality screening.
-                        Demonstrated feasibility of sensor-based defect detection even with limited defect samples.</li>
-                    </ul>
-                </div>
-
-                <div class="project-section">
-                    <h3>Impact & Applications</h3>
+                    <h3>Impact &amp; Next Steps</h3>
                     <p>
-                        This analysis provides a foundation for implementing real-time quality monitoring in manufacturing:
-                    </p>
-                    <ul>
-                        <li><strong>Early Detection:</strong> Potential to identify defects during machining rather than post-production</li>
-                        <li><strong>Cost Reduction:</strong> Minimize waste and rework by catching defects immediately</li>
-                        <li><strong>Process Optimization:</strong> Insights into machining parameters that lead to defects</li>
-                        <li><strong>Predictive Maintenance:</strong> Unusual patterns could indicate machine tool degradation</li>
-                    </ul>
-                </div>
-
-                <div class="project-section">
-                    <h3>Data Confidentiality Note</h3>
-                    <p>
-                        Raw sensor data is not included in the public repository due to company confidentiality agreements. 
-                        The GitHub repository shares the analysis workflow, methodology, and code structure while protecting 
-                        proprietary manufacturing data.
+                        This work proves that sensor-based defect detection is feasible even under severe class imbalance — a common reality in industrial settings. The product-level feature profiles I developed lay the groundwork for real-time quality monitoring, early defect flagging, and predictive maintenance. Next, I plan to expand the defect sample pool and explore anomaly detection models to formalize the classification pipeline.
                     </p>
                 </div>
 
@@ -308,10 +234,10 @@
         <div class="container">
             <p>&copy; 2025 Rita Xiong. All rights reserved.</p>
             <div class="social-links">
-                <a href="#" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/yuehan-xiong-0512xxx/" target="_blank" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="#" aria-label="GitHub">
+                <a href="https://github.com/blvenoise9" target="_blank" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
                 <a href="#" aria-label="Kaggle">

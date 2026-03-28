@@ -12,328 +12,182 @@
     <!-- Star Background -->
     <div class="star-background"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">RX009
-            </a>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-content">
+        <div class="hero-scene">
+            <!-- Character on left -->
+            <div class="character-container">
+                <img src="%20elements/profile.png" alt="Rita Xiong" class="character-img">
+            </div>
+
+            <!-- Center text -->
+            <div class="hero-center">
                 <h1 class="hero-title">Hi! I am Rita Xiong</h1>
-                <p class="hero-description"> 
-                    I enjoy exploring complex process and operational problems and finding practical ways to improve how things work.
+                <p class="hero-description">
+                    I enjoy exploring complex process and operational<br>
+                    problems , finding practical ways to improve how things<br>
+                    work.
                 </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-chart-bar"></i>
-                        View Portfolio
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i>
-                        Get In Touch
-                    </a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-image">
-                    <img src="images/profile.jpg" alt="Rita Xiong - Data Analyst" class="profile-photo">
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                    I am a Master’s student in Business Analytics at Columbia University with a background in Business Economics and Cognitive Science (Machine Learning specialization) 
-                    from UC San Diego. My interests lie at the intersection of data, process optimization, and business strategy, using analytics to improve decision-making and operational performance.
-                    </p>
-                    <p>
-                        Outside of work, I love canyon runs in my car, designing jewelry, exploring interior design and good food.
-                    </p>
-                        I am currently seeking internship or collaborative opportunities in process improvement and strategy development across industries.
-                        Lets Connect!
-                    </p>
-                </div>
-                
-                <!-- Saturn Car Image -->
-                <div class="saturn-car-container">
-                    <img src="images/Saturn-Car.png" alt="Saturn Car" class="saturn-car-image">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <h2 class="section-title">Here are a few things I've done recently</h2>
-            
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/reprogram_bioscience.png" alt="Reprogram Biosciences Project" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Reprogram Biosciences</h3>
-                        <p class="project-description">
-                            Commercialization strategy for an mRNA-based solid tumor therapeutic platform at a biotech startup
-                        <div class="project-links">
-                            <a href="reprogram-biosciences.html" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                                Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/JLab.png" alt="JLab Audio Project" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">JLab</h3>
-                        <p class="project-description">
-                            Market strategy and customer segmentation analysis to optimize B2C growth and product positioning
-                        </p>
-                        <div class="project-links">
-                            <a href="jlab.html" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                                Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/eeg-adhd.png" alt="EEG-ADHD Classification Project" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">EEG-Based ADHD Classification</h3>
-                        <p class="project-description">
-                            Machine learning classification of ADHD using EEG signals and traditional ML models for objective neurodiagnostics
-                        </p>
-                        <div class="project-links">
-                            <a href="eeg-adhd.html" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                                Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Empty Project Templates -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/cancer-screening.png" alt="Cancer Screening Reminder System Project" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Cancer Screening Reminder System</h3>
-                        <p class="project-description">
-                            Data-driven reminder system to promote timely cancer screening based on individual risk factors, focusing on reducing health disparities in underserved populations.
-                        </p>
-                        <div class="project-links">
-                            <a href="cancer-screening.html" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                                Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/diabetes_food.png" alt="Diabetes and Food Access Analysis Project" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Diabetes & Food Access Analysis</h3>
-                        <p class="project-description">
-                            Comprehensive analysis of U.S. county health rankings and USDA food access data to understand how food accessibility impacts diabetes rates across different communities.
-                        </p>
-                        <div class="project-links">
-                            <a href="diabetes-food.html" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                                Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/dream-machine.png" alt="Dream Machine 1999 Journal App" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Dream Machine 1999 Journal App</h3>
-                        <p class="project-description">
-                            A minimal iOS journaling app for capturing life's fleeting moments. Born from personal habit, designed for quick captures of thoughts, photos, and memories that might otherwise slip away.
-                        </p>
-                        <div class="project-links">
-                            <a href="dream-machine-1999.html" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                                Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/machine-tool.png" alt="Machine Tool Defect Detection" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Machine Tool Defect Detection</h3>
-                        <p class="project-description">
-                            Product-level detection of vibration-induced surface defects in CNC machining using sensor signal analysis and frequency-domain feature extraction.
-                        </p>
-                        <div class="project-links">
-                            <a href="machine-tool-defect.html" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                                Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <p class="section-subtitle">Tools and technologies I use to deliver solutions</p>
-            
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Programming & Analysis</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Python</span>
-                        <span class="skill-item">R</span>
-                        <span class="skill-item">SQL</span>
-                        <span class="skill-item">MATLAB</span>
-
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Visualization & BI Tools</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Tableau</span>
-                        <span class="skill-item">Power BI</span>
-                        <span class="skill-item">Excel</span>
-                        <span class="skill-item">HTML</span>
-                        <span class="skill-item">CSS</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Databases & Cloud</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">MySQL</span>
-                        <span class="skill-item">PostgreSQL</span>
-                        <span class="skill-item">BigQuery</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Let's Connect</h2>
-            
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>ritaxiong512@gmail.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+1 (858) 539-5405</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Location</h4>
-                            <p>New York City, NY</p>
-                        </div>
-                    </div>
-                </div>
-
-                <form class="contact-form" action="https://formspree.io/f/mblkjerr" method="POST">
-                    <input type="hidden" name="_subject" value="New Portfolio Contact Form Submission">
-                    
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Anything!" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i>
-                        Send Message
+                <!-- Interactive objects -->
+                <div class="hero-objects">
+                    <button class="interactive-object" id="notebook-btn" aria-label="Open About Me">
+                        <img src="%20elements/notebook.png" alt="About Me notebook" class="object-img notebook-img">
                     </button>
-                </form>
+                    <button class="interactive-object" id="laptop-btn" aria-label="Open Projects">
+                        <img src="%20elements/laptop.png" alt="Projects laptop" class="object-img laptop-img">
+                    </button>
+                    <button class="interactive-object" id="iphone-btn" aria-label="Contact Me">
+                        <img src="%20elements/iphone_pix.png" alt="Contact iPhone" class="object-img iphone-img">
+                    </button>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- ── ABOUT ME MODAL ── -->
+    <div class="about-modal-overlay" id="about-modal">
+        <button class="about-close-btn" id="about-close" aria-label="Close">&#x2715;</button>
+        <img src="%20elements/about_me.png" alt="About Me" class="about-me-img">
+    </div>
+
+    <!-- ── PROJECTS DESKTOP MODAL ── -->
+    <div class="modal-overlay" id="projects-modal">
+        <div class="desktop-screen">
+            <!-- macOS-style menu bar -->
+            <div class="desktop-menubar">
+                <span class="menubar-apple">&#63743;</span>
+                <span class="menubar-item">Finder</span>
+                <span class="menubar-item">File</span>
+                <span class="menubar-item">View</span>
+                <div class="menubar-right">
+                    <button class="desktop-close-btn" id="projects-close" aria-label="Close desktop">&#x2715;</button>
+                </div>
+            </div>
+
+            <!-- Desktop wallpaper + icons -->
+            <div class="desktop-body">
+                <img src="%20elements/desktop.png" alt="Desktop wallpaper" class="desktop-wallpaper">
+
+                <!-- Folder icons grid -->
+                <div class="desktop-icons">
+                    <a href="reprogram-biosciences.html" class="desktop-folder">
+                        <div class="desktop-folder-icon">
+                            <img src="images/reprogram_bioscience.png" alt="" class="desktop-folder-preview">
+                        </div>
+                        <span class="desktop-folder-name">Reprogram Biosciences</span>
+                    </a>
+                    <a href="jlab.html" class="desktop-folder">
+                        <div class="desktop-folder-icon">
+                            <img src="images/JLab.png" alt="" class="desktop-folder-preview">
+                        </div>
+                        <span class="desktop-folder-name">JLab</span>
+                    </a>
+                    <a href="eeg-adhd.html" class="desktop-folder">
+                        <div class="desktop-folder-icon">
+                            <img src="images/eeg-adhd.png" alt="" class="desktop-folder-preview">
+                        </div>
+                        <span class="desktop-folder-name">EEG-Based ADHD Classification</span>
+                    </a>
+                    <a href="cancer-screening.html" class="desktop-folder">
+                        <div class="desktop-folder-icon">
+                            <img src="images/cancer-screening.png" alt="" class="desktop-folder-preview">
+                        </div>
+                        <span class="desktop-folder-name">Cancer Screening Reminder System</span>
+                    </a>
+
+                    <a href="dream-machine-1999.html" class="desktop-folder">
+                        <div class="desktop-folder-icon">
+                            <img src="images/dream-machine.png" alt="" class="desktop-folder-preview">
+                        </div>
+                        <span class="desktop-folder-name">Dream Machine 1999 Journal App</span>
+                    </a>
+                    <a href="machine-tool-defect.html" class="desktop-folder">
+                        <div class="desktop-folder-icon">
+                            <img src="images/machine-tool.png" alt="" class="desktop-folder-preview">
+                        </div>
+                        <span class="desktop-folder-name">Machine Tool Defect Detection</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ── IPHONE CONTACT MODAL ── -->
+    <div class="iphone-modal-overlay" id="iphone-modal">
+        <div class="iphone-frame">
+            <!-- Dynamic Island -->
+            <div class="iphone-island"></div>
+
+            <!-- Status Bar -->
+            <div class="iphone-status-bar">
+                <span class="iphone-carrier">AT&amp;T</span>
+                <div class="iphone-status-icons">
+                    <i class="fas fa-signal" style="font-size:0.65rem;"></i>
+                    <i class="fas fa-wifi" style="font-size:0.65rem;"></i>
+                    <i class="fas fa-battery-three-quarters" style="font-size:0.65rem;"></i>
+                </div>
+            </div>
+
+            <!-- Close button -->
+            <button class="iphone-close-btn" id="iphone-close" aria-label="Close">&#x2715;</button>
+
+            <!-- Scrollable screen content -->
+            <div class="iphone-screen">
+                <div class="iphone-contact-body">
+                    <h2 class="iphone-connect-title">Let's Connect!</h2>
+
+                    <div class="iphone-contact-item">
+                        <i class="fas fa-envelope iphone-contact-icon"></i>
+                        <div>
+                            <p class="iphone-contact-label">Email</p>
+                            <p class="iphone-contact-value">ritaxiong512@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="iphone-contact-item">
+                        <i class="fas fa-phone iphone-contact-icon"></i>
+                        <div>
+                            <p class="iphone-contact-label">Phone</p>
+                            <p class="iphone-contact-value">+1 (858) 539-5405</p>
+                        </div>
+                    </div>
+                    <div class="iphone-contact-item">
+                        <i class="fas fa-map-marker-alt iphone-contact-icon"></i>
+                        <div>
+                            <p class="iphone-contact-label">Location</p>
+                            <p class="iphone-contact-value">New York City, NY</p>
+                        </div>
+                    </div>
+
+                    <form class="iphone-form" action="https://formspree.io/f/mblkjerr" method="POST">
+                        <input type="hidden" name="_subject" value="New Portfolio Contact Form Submission">
+                        <input class="iphone-input" type="text" name="name" placeholder="Your Name" required>
+                        <input class="iphone-input" type="email" name="email" placeholder="Your Email" required>
+                        <textarea class="iphone-input iphone-textarea" name="message" placeholder="Anything!" required></textarea>
+                        <button type="submit" class="iphone-send-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Home indicator -->
+                <div class="iphone-home-indicator"></div>
+            </div>
+        </div>
+    </div>
+    
+
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Rita Xiong. All rights reserved.</p>
+            <p>&copy; 2026 Rita Xiong. All rights reserved.</p>
             <div class="social-links">
-                <a href="#" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/yuehan-xiong-0512xxx/" target="_blank" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="#" aria-label="GitHub">
+                <a href="https://github.com/blvenoise9" target="_blank" aria-label="GitHub">
                     <i class="fab fa-github"></i>
-                </a>
-                <a href="#" aria-label="Kaggle">
-                    <i class="fab fa-kaggle"></i>
-                </a>
-                <a href="#" aria-label="Medium">
-                    <i class="fab fa-medium"></i>
                 </a>
             </div>
         </div>

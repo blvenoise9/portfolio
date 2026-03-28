@@ -184,63 +184,113 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: 140px 0 100px;
     min-height: 100vh;
     display: flex;
     align-items: center;
     position: relative;
+    overflow: hidden;
+    padding-top: 70px;
 }
 
-.hero-container {
-    max-width: 1200px;
+.hero-scene {
+    width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+    padding: 0 20px 0 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 0;
+    min-height: calc(100vh - 70px);
 }
 
-.hero-content {
-    animation: fadeInUp 1s ease-out;
+/* Character */
+.character-container {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-end;
+    align-self: flex-end;
+    height: 100%;
+}
+
+.character-img {
+    height: min(82vh, 700px);
+    width: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 0 30px rgba(255,255,255,0.08));
+}
+
+/* Center text + objects */
+.hero-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 0.5rem 6rem 1.5rem;
+    animation: fadeInUp 1s ease-out 0.3s both;
 }
 
 .hero-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    line-height: 1.1;
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    line-height: 1.3;
     color: #ffffff;
-    letter-spacing: -0.5px;
-}
-
-.hero-subtitle {
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
-    color: #3b82f6;
-    font-weight: 500;
-    opacity: 0;
-    animation: fadeInUp 1s ease-out 0.3s forwards;
+    letter-spacing: 0;
 }
 
 .hero-description {
-    font-size: 1.1rem;
-    margin-bottom: 2.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
     color: #d1d5db;
-    line-height: 1.7;
+    line-height: 1.75;
     font-weight: 400;
-    opacity: 0;
-    animation: fadeInUp 1s ease-out 0.5s forwards;
 }
 
-.hero-buttons {
+/* Interactive objects row */
+.hero-objects {
     display: flex;
-    gap: 1.5rem;
-    margin-top: 2rem;
-    opacity: 0;
-    animation: fadeInUp 1s ease-out 0.7s forwards;
+    align-items: flex-end;
+    gap: 1.2rem;
 }
 
+.interactive-object {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.25s ease, filter 0.25s ease;
+    outline: none;
+}
+
+.interactive-object:hover {
+    transform: translateY(-8px) scale(1.04);
+    filter: drop-shadow(0 12px 24px rgba(255,255,255,0.15));
+}
+
+.interactive-object:focus-visible {
+    outline: 2px dashed rgba(255,255,255,0.5);
+    outline-offset: 6px;
+    border-radius: 4px;
+}
+
+.object-img {
+    display: block;
+    object-fit: contain;
+}
+
+.notebook-img {
+    height: 230px;
+    width: auto;
+}
+
+.laptop-img {
+    height: 290px;
+    width: auto;
+}
+
+/* Buttons (kept for contact etc.) */
 .btn {
     padding: 14px 28px;
     text-decoration: none;
@@ -280,59 +330,295 @@ body {
     transform: translateY(-2px);
 }
 
-.hero-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeInUp 1s ease-out 0.4s backwards;
-}
-
-.hero-image {
-    width: 550px;
-    height: 550px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.profile-photo {
-    max-width: 550px;
-    max-height: 550px;
-    width: auto;
-    height: auto;
-    border-radius: 12px;
-    object-fit: contain;
-    border: 3px solid #3b82f6;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-.profile-photo:hover {
-    transform: scale(1.05);
-    box-shadow: 0 25px 50px rgba(59, 130, 246, 0.4);
-}
-
-.hero-chart {
-    width: 300px;
-    height: 300px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.chart-placeholder {
-    font-size: 6rem;
-    color: #3b82f6;
-    opacity: 0.8;
-    animation: pulse 2s ease-in-out infinite;
-}
-
 @keyframes pulse {
     0%, 100% { opacity: 0.8; }
     50% { opacity: 1; }
+}
+
+/* ── MODAL OVERLAY ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.82);
+    backdrop-filter: blur(6px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-box {
+    position: relative;
+    border-radius: 16px;
+    background: #0d0d0d;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    animation: modalPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    overflow: hidden;
+}
+
+@keyframes modalPop {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.2s;
+    opacity: 0.7;
+}
+
+.modal-close:hover { opacity: 1; }
+
+/* ── ABOUT ME MODAL (full-screen book) ── */
+.about-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+    /* Same star background as landing page */
+    background:
+        radial-gradient(3px 3px at 20px 30px, rgba(255,255,255,1), transparent),
+        radial-gradient(3px 3px at 40px 70px, rgba(255,255,255,0.95), transparent),
+        radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.85), transparent),
+        radial-gradient(3px 3px at 160px 30px, rgba(255,255,255,1), transparent),
+        radial-gradient(2px 2px at 200px 120px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 250px 60px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(3px 3px at 300px 100px, rgba(255,255,255,1), transparent),
+        radial-gradient(2px 2px at 50px 150px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 150px 200px, rgba(255,255,255,0.75), transparent),
+        radial-gradient(2px 2px at 280px 180px, rgba(255,255,255,0.85), transparent),
+        radial-gradient(2px 2px at 320px 20px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 75px 250px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 225px 280px, rgba(255,255,255,0.75), transparent),
+        radial-gradient(1px 1px at 70px 90px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 180px 50px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 220px 150px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 310px 170px, rgba(255,255,255,0.65), transparent),
+        radial-gradient(1px 1px at 100px 220px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 270px 230px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(2px 2px at 110px 190px, rgba(135,206,235,0.8), transparent),
+        radial-gradient(2px 2px at 240px 40px, rgba(135,206,235,0.7), transparent),
+        radial-gradient(1px 1px at 330px 140px, rgba(135,206,235,0.6), transparent),
+        radial-gradient(2px 2px at 290px 320px, rgba(255,255,255,0.8), transparent),
+        #000000;
+    background-repeat: repeat;
+    background-size: 380px 350px;
+}
+
+.about-modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.about-close-btn {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.7;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: opacity 0.2s, background 0.2s;
+}
+
+.about-close-btn:hover {
+    opacity: 1;
+    background: rgba(255,255,255,0.1);
+}
+
+/* About Me image */
+.about-me-img {
+    width: min(880px, 92vw);
+    height: auto;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    animation: modalPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ── PROJECTS DESKTOP MODAL ── */
+.desktop-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.desktop-menubar {
+    flex-shrink: 0;
+    height: 28px;
+    background: rgba(20, 20, 20, 0.88);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 18px;
+    z-index: 10;
+    font-size: 0.78rem;
+    color: #f0f0f0;
+}
+
+.menubar-apple {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.menubar-item {
+    font-size: 0.78rem;
+    font-weight: 500;
+    opacity: 0.85;
+    letter-spacing: 0.01em;
+}
+
+.menubar-right {
+    margin-left: auto;
+}
+
+.desktop-close-btn {
+    background: none;
+    border: none;
+    color: #f0f0f0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: opacity 0.2s, background 0.2s;
+}
+
+.desktop-close-btn:hover {
+    opacity: 1;
+    background: rgba(255,255,255,0.12);
+}
+
+.desktop-body {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.desktop-wallpaper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+}
+
+/* Icon grid — right column, top area */
+.desktop-icons {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.desktop-folder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    width: 110px;
+    padding: 8px 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.desktop-folder:hover {
+    background: rgba(100, 160, 255, 0.25);
+    transform: scale(1.06);
+}
+
+.desktop-folder-icon {
+    position: relative;
+    width: 80px;
+    height: 68px;
+}
+
+/* Folder body */
+.desktop-folder-icon::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(160deg, #6aabff 0%, #3d82e8 100%);
+    border-radius: 4px 6px 4px 4px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+}
+
+/* Folder tab */
+.desktop-folder-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8px;
+    width: 28px;
+    height: 13px;
+    background: #89c2ff;
+    border-radius: 3px 3px 0 0;
+    z-index: 1;
+}
+
+.desktop-folder-preview {
+    position: absolute;
+    top: 16px;
+    left: 6px;
+    width: calc(100% - 12px);
+    height: calc(100% - 20px);
+    object-fit: cover;
+    border-radius: 2px;
+    z-index: 2;
+}
+
+.desktop-folder-name {
+    font-size: 0.72rem;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.35;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6);
+    max-width: 84px;
+    word-break: break-word;
 }
 
 /* Section Titles */
@@ -356,92 +642,6 @@ body {
     font-weight: 400;
 }
 
-/* About Section */
-.about {
-    padding: 120px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.about-content {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-}
-
-.about-text {
-    text-align: center;
-    margin-bottom: 4rem;
-    position: relative;
-    z-index: 3;
-}
-
-.about-text p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    color: #d1d5db;
-    line-height: 1.7;
-    font-weight: 400;
-}
-
-/* Saturn Car Image Positioning */
-.saturn-car-container {
-    position: absolute;
-    bottom: -70px;
-    right: -300px;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.saturn-car-image {
-    width: 600px;
-    height: auto;
-    opacity: 0.3;
-    transform: rotate(-15deg);
-    transition: all 0.3s ease;
-    filter: brightness(0.7) contrast(1.2);
-}
-
-.about:hover .saturn-car-image {
-    opacity: 0.5;
-    transform: rotate(-10deg) scale(1.05);
-}
-
-.about-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    margin-top: 4rem;
-}
-
-.stat {
-    text-align: center;
-    padding: 2.5rem 2rem;
-    background: rgba(17, 24, 39, 0.8);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.stat:hover {
-    transform: translateY(-5px);
-    border-color: #3b82f6;
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
-}
-
-.stat h3 {
-    font-size: 3rem;
-    color: #3b82f6;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-}
-
-.stat p {
-    color: #9ca3af;
-    font-weight: 500;
-    font-size: 1rem;
-}
 
 /* Projects Section */
 .projects {
@@ -814,38 +1014,72 @@ body {
     .nav-menu.active {
         left: 0;
     }
-    
-    .hero-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 3rem;
-        padding: 0 20px;
-    }
-    
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-buttons {
+
+    /* Hero mobile */
+    .hero-scene {
         flex-direction: column;
         align-items: center;
+        padding: 0 20px 40px;
+        gap: 0;
+        min-height: auto;
+        padding-top: 20px;
     }
-    
-    .hero-chart {
-        width: 300px;
-        height: 300px;
+
+    .character-container {
+        align-self: center;
+        height: auto;
     }
-    
-    .hero-image {
-        width: 280px;
-        height: 280px;
+
+    .character-img {
+        height: 45vh;
+        max-height: 340px;
     }
-    
-    .profile-photo {
-        width: 250px;
-        height: 250px;
+
+    .hero-center {
+        padding: 1.5rem 0 2rem;
+        align-items: center;
+        text-align: center;
     }
-    
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-objects {
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    .notebook-img { height: 160px; }
+    .laptop-img   { height: 200px; }
+
+    /* About Me modal mobile */
+    .about-me-img {
+        width: 96vw;
+    }
+
+    /* Desktop modal mobile — icons move to top-left column */
+    .desktop-icons {
+        top: 12px;
+        right: 10px;
+        gap: 6px;
+    }
+    .desktop-folder {
+        width: 68px;
+    }
+    .desktop-folder-icon {
+        width: 48px;
+        height: 40px;
+    }
+    .desktop-folder-name {
+        font-size: 0.58rem;
+        max-width: 68px;
+    }
+
     .about-stats {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -873,7 +1107,6 @@ body {
         font-size: 2rem;
     }
     
-    /* Saturn Car responsive adjustments */
     .saturn-car-container {
         bottom: -40px;
         right: -50px;
@@ -893,24 +1126,9 @@ body {
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.4rem;
     }
-    
-    .hero-chart {
-        width: 250px;
-        height: 250px;
-    }
-    
-    .hero-image {
-        width: 350px;
-        height: 350px;
-    }
-    
-    .profile-photo {
-        width: 300px;
-        height: 300px;
-    }
-    
+
     .btn {
         padding: 12px 24px;
         font-size: 0.9rem;
@@ -918,12 +1136,10 @@ body {
     
     .about,
     .projects,
-    .skills,
     .contact {
         padding: 80px 0;
     }
     
-    /* Saturn Car mobile adjustments */
     .saturn-car-container {
         bottom: -20px;
         right: -30px;
@@ -968,4 +1184,234 @@ body {
     background: #ef4444;
     border-color: #ef4444;
     box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+}
+
+/* ── iPhone image in hero ── */
+.iphone-img {
+    height: 260px;
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .iphone-img { height: 175px; }
+}
+
+/* ── iPhone Contact Modal ── */
+.iphone-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(6px);
+}
+
+.iphone-modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.iphone-frame {
+    position: relative;
+    width: 340px;
+    max-height: 88vh;
+    background: #0d0d0f;
+    border-radius: 52px;
+    border: 9px solid #2c2c2e;
+    box-shadow:
+        0 0 0 1px #3a3a3c,
+        0 40px 100px rgba(0, 0, 0, 0.8),
+        inset 0 0 0 1px rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Dynamic Island */
+.iphone-island {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 118px;
+    height: 34px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 20;
+    pointer-events: none;
+}
+
+/* Status bar */
+.iphone-status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px 6px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #ffffff;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 5;
+}
+
+.iphone-status-icons {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+/* Close button */
+.iphone-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: #ffffff;
+    font-size: 0.85rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    transition: background 0.2s ease;
+}
+
+.iphone-close-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Scrollable screen */
+.iphone-screen {
+    flex: 1;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.iphone-screen::-webkit-scrollbar {
+    display: none;
+}
+
+.iphone-connect-title {
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 16px;
+}
+
+/* Contact info + form */
+.iphone-contact-body {
+    padding: 16px 20px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.iphone-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.iphone-contact-icon {
+    color: #3b82f6;
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.iphone-contact-label {
+    font-size: 0.65rem;
+    color: #9ca3af;
+    margin: 0 0 2px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.iphone-contact-value {
+    font-size: 0.8rem;
+    color: #e5e7eb;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Form */
+.iphone-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.iphone-input {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 12px 16px;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.iphone-input::placeholder {
+    color: #6b7280;
+}
+
+.iphone-input:focus {
+    border-color: #3b82f6;
+    background: rgba(59,130,246,0.08);
+}
+
+.iphone-textarea {
+    resize: none;
+    height: 90px;
+}
+
+.iphone-send-btn {
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.iphone-send-btn:hover {
+    background: #2563eb;
+    transform: scale(1.02);
+}
+
+/* Home indicator */
+.iphone-home-indicator {
+    width: 120px;
+    height: 5px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+    margin: 16px auto 20px;
 }

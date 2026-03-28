@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         .project-detail {
-            padding: 120px 0 80px;
+            padding: 60px 0 80px;
             min-height: 100vh;
         }
         
@@ -68,8 +68,17 @@
             color: #ffffff;
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            border-bottom: 2px solid #3b82f6;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0;
+        }
+
+        .project-section h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: #3b82f6;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
         }
         
         .project-section p, .project-section li {
@@ -153,9 +162,9 @@
     <div class="star-background"></div>
 
     <!-- Back Button -->
-    <a href="index.html#projects" class="back-button">
+    <a href="index.html?openDesktop=true" class="back-button">
         <i class="fas fa-arrow-left"></i>
-        Back to Portfolio
+        Back to Desktop
     </a>
 
     <!-- Project Detail Section -->
@@ -190,78 +199,24 @@
                 </div>
                 
                 <div class="project-section">
-                    <h3>Project Overview</h3>
+                    <h3>Overview</h3>
                     <p>
-                        Worked with JLab, a San Diego-based audio company, to address the critical challenge of 
-                        <strong>increasing customer retention and converting one-time or in-person purchasers into loyal online customers</strong>. 
-                        The project focused on leveraging consumer behavior data and brand perception insights to propose 
-                        data-driven marketing strategies that would transform JLab's customer acquisition and retention approach.
+                        One-time buyers are one of the biggest revenue leaks in e-commerce, and JLab, a San Diego-based audio brand, was no exception. As part of a team engaged directly with JLab, I worked on analyzing their customer behavior data and developing a data-driven strategy to convert one-time and in-person purchasers into loyal, repeat online customers.
                     </p>
-                </div>
-                
-                <div class="highlight-box">
-                    <h4>Key Problem Statement</h4>
+
+                    <h3>What I Built</h3>
                     <p>
-                        How can JLab reduce the number of one-time and in-person purchasers and convert them into repeat, 
-                        loyal customers purchasing through their official website?
+                        Working alongside my team, I helped consolidate and clean purchasing data across four platforms — Shopify, TikTok, in-person retail, and JLab's website — and contributed to building a full customer analytics pipeline. This included RFM modeling, cohort analysis, customer segmentation, and behavioral analysis across seasonal trends, regional preferences, and cross-channel conversion rates. Together, we identified 5 distinct customer segments with meaningfully different lifetime values and purchase behaviors.
                     </p>
-                </div>
-                
-                <div class="project-section">
-                    <h3>Data Analysis & Methodology</h3>
-                    <ul>
-                        <li><strong>Multi-Platform Data Integration:</strong> Consolidated purchasing records from Shopify, TikTok, in-person retail, and website data sources</li>
-                        <li><strong>Data Cleaning & Preprocessing:</strong> Standardized customer records across platforms, handled missing values, and resolved duplicate entries</li>
-                        <li><strong>Customer Segmentation:</strong> Developed comprehensive segmentation framework based on order price, purchase frequency, and product preferences</li>
-                        <li><strong>Behavioral Analysis:</strong> Analyzed seasonal purchasing trends, repeat customer behaviors, and regional product preferences</li>
-                        <li><strong>Statistical Modeling:</strong> Applied cohort analysis and RFM (Recency, Frequency, Monetary) modeling to identify high-value customer segments</li>
-                    </ul>
-                </div>
-                
-                <div class="project-section">
-                    <h3>Key Insights & Findings</h3>
-                    <ul>
-                        <li><strong>Customer Segmentation:</strong> Identified 5 distinct customer segments with varying lifetime values and purchase behaviors</li>
-                        <li><strong>Seasonal Trends:</strong> Discovered significant seasonal purchasing patterns beyond traditional holidays, revealing untapped revenue opportunities</li>
-                        <li><strong>Regional Preferences:</strong> Mapped product preferences by geography, identifying regional market opportunities</li>
-                        <li><strong>Channel Performance:</strong> Analyzed conversion rates across different sales channels, identifying optimization opportunities</li>
-                        <li><strong>Customer Journey Mapping:</strong> Traced customer paths from first purchase to repeat purchases, identifying drop-off points</li>
-                        <li><strong>Product Affinity Analysis:</strong> Discovered complementary product relationships for bundling strategies</li>
-                    </ul>
-                </div>
-                
-                
-                <div class="project-section">
-                    <h3>Actionable Strategy Implementation</h3>
-                    <ul>
-                        <li><strong>Personalized Product Recommendations:</strong> Developed recommendation engine based on purchase history and geographic preferences, increasing cross-sell opportunities</li>
-                        <li><strong>Strategic Product Bundling:</strong> Created data-driven bundles (e.g., Go Air Pop with accessories) based on purchase affinity analysis, improving average order value</li>
-                        <li><strong>Email Marketing Optimization:</strong> Redesigned Klaviyo email flows using segmentation data, resulting in 25% higher open rates and 18% better click-through rates</li>
-                    </ul>
-                </div>
-                
-                <div class="project-section">
-                    <h3>Technical Skills & Tools</h3>
-                    <div class="project-tech" style="justify-content: flex-start; margin-top: 1rem;">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Customer Segmentation</span>
-                        <span class="tech-tag">RFM Modeling</span>
-                        <span class="tech-tag">Data Visualization</span>
-                        <span class="tech-tag">Statistical Analysis</span>
-                    </div>
-                </div>
-                
-    
-                
-                <div class="project-section">
-                    <h3>Key Learnings & Skills Developed</h3>
+
+                    <h3>Results</h3>
                     <p>
-                        This project enhanced my expertise in customer analytics and data-driven marketing strategy. 
-                        I developed advanced skills in multi-platform data integration, customer segmentation, and 
-                        predictive modeling while learning to translate complex analytical insights into actionable 
-                        business strategies. 
+                        The analysis surfaced several high-impact opportunities: untapped seasonal revenue windows beyond traditional holidays, region-specific product preferences, and strong purchase affinity patterns ideal for bundling. On the marketing side, our redesigned Klaviyo email flows — built using our segmentation data.
                     </p>
-            
+
+                    <h3>Impact &amp; Next Steps</h3>
+                    <p>
+                        This engagement delivered actionable strategies JLab could implement immediately — personalized product recommendations, data-driven bundles, and optimized retention flows. It demonstrated how multi-platform behavioral data, when properly unified, can transform a fragmented customer base into a targetable, retention-ready audience. Going forward, I'd look to layer in predictive churn modeling to proactively identify at-risk customers before they lapse.
                     </p>
                 </div>
             </div>
@@ -273,10 +228,10 @@
         <div class="container">
             <p>&copy; 2024 Rita Xiong. All rights reserved.</p>
             <div class="social-links">
-                <a href="#" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/yuehan-xiong-0512xxx/" target="_blank" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="#" aria-label="GitHub">
+                <a href="https://github.com/blvenoise9" target="_blank" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
                 <a href="#" aria-label="Kaggle">

@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         .project-detail {
-            padding: 120px 0 80px;
+            padding: 60px 0 80px;
             min-height: 100vh;
         }
         
@@ -68,8 +68,17 @@
             color: #ffffff;
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            border-bottom: 2px solid #3b82f6;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0;
+        }
+
+        .project-section h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: #3b82f6;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
         }
         
         .project-section p, .project-section li {
@@ -209,9 +218,9 @@
     <div class="star-background"></div>
 
     <!-- Back Button -->
-    <a href="index.html#projects" class="back-button">
+    <a href="index.html?openDesktop=true" class="back-button">
         <i class="fas fa-arrow-left"></i>
-        Back to Portfolio
+        Back to Desktop
     </a>
 
     <!-- Project Detail Section -->
@@ -242,267 +251,40 @@
                 <div class="project-section">
                     <h3>Project Overview</h3>
                     <p>
-                        This project explores the use of <strong>traditional machine learning models</strong> to classify 
-                        Attention Deficit Hyperactivity Disorder (ADHD) versus neurotypical controls using 
-                        <strong>electroencephalogram (EEG) signals</strong>. The goal is to develop accessible, objective 
-                        tools to support clinical diagnoses, which are currently reliant on subjective behavioral assessments.
+                        ADHD is typically diagnosed through subjective behavioral assessments — a process prone to inconsistency and bias. I led a machine learning project to classify ADHD vs. neurotypical individuals using EEG brain signals, with the goal of making diagnosis more objective and data-driven.
                     </p>
-                    
-                    <div class="highlight-box">
-                        <h4>Research Motivation</h4>
-                        <p>
-                            ADHD diagnoses are often based on subjective reports, leading to potential misdiagnosis. 
-                            EEG offers a <strong>non-invasive, cost-effective</strong> approach to capture neural signatures. 
-                            This project investigates whether <strong>EEG-derived features</strong> like theta/beta ratio, 
-                            alpha power, and slow wave activity can serve as reliable biomarkers to distinguish ADHD 
-                            from neurotypical individuals.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="project-section">
-                    <h3>Dataset & Preprocessing</h3>
-                    
-                    <h4>Data Source</h4>
-                    <p>IEEE dataset containing EEG recordings from children aged 7–12 years, with balanced representation of ADHD and neurotypical control groups.</p>
-                    
-                    <div class="methodology-grid">
-                        <div class="methodology-item">
-                            <h4><i class="fas fa-brain" style="color: #3b82f6; margin-right: 0.5rem;"></i>EEG Setup</h4>
-                            <p>19 EEG channels (Fz, Cz, Pz, C3, T3, etc.) recorded at 128 Hz sampling rate using standard 10-20 electrode placement system.</p>
-                        </div>
-                        <div class="methodology-item">
-                            <h4><i class="fas fa-filter" style="color: #3b82f6; margin-right: 0.5rem;"></i>Signal Processing</h4>
-                            <p>Bandpass filtering (1–50 Hz), Independent Component Analysis (ICA) for artifact removal, and 2-second epoching with 50% overlap.</p>
-                        </div>
-                        <div class="methodology-item">
-                            <h4><i class="fas fa-chart-line" style="color: #3b82f6; margin-right: 0.5rem;"></i>Feature Extraction</h4>
-                            <p>Three neurophysiologically relevant feature types: Theta/Beta Ratio, Alpha Power (8–13 Hz), and Slow Wave Activity (<12.5 Hz).</p>
-                        </div>
-                        <div class="methodology-item">
-                            <h4><i class="fas fa-cogs" style="color: #3b82f6; margin-right: 0.5rem;"></i>Data Quality</h4>
-                            <p>Rigorous quality control including artifact detection, channel validation, and statistical outlier removal to ensure clean datasets.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-section">
-                    <h3>Machine Learning Approach</h3>
-                    <p>We implemented and compared three traditional machine learning models, each chosen for their proven effectiveness in biomedical signal classification:</p>
-                    
-                    <div class="methodology-grid">
-                        <div class="methodology-item">
-                            <h4><i class="fas fa-vector-square" style="color: #3b82f6; margin-right: 0.5rem;"></i>Support Vector Machine (SVM)</h4>
-                            <p>Linear and RBF kernels for both linear and non-linear pattern recognition, with hyperparameter optimization via grid search.</p>
-                        </div>
-                        <div class="methodology-item">
-                            <h4><i class="fas fa-tree" style="color: #3b82f6; margin-right: 0.5rem;"></i>Random Forest</h4>
-                            <p>Ensemble method providing feature importance insights and robust performance across different feature types.</p>
-                        </div>
-                        <div class="methodology-item">
-                            <h4><i class="fas fa-users" style="color: #3b82f6; margin-right: 0.5rem;"></i>K-Nearest Neighbors (KNN)</h4>
-                            <p>Instance-based learning with optimized k-value selection and distance metric evaluation for local pattern recognition.</p>
-                        </div>
-                    </div>
-                    
-                    <h4>Model Validation</h4>
-                    <ul>
-                        <li><strong>Cross-Validation:</strong> 5-fold stratified cross-validation to ensure robust performance estimates</li>
-                        <li><strong>Hyperparameter Tuning:</strong> Grid search optimization for each model's parameters</li>
-                        <li><strong>Performance Metrics:</strong> Accuracy, precision, recall, and F1-score evaluation</li>
-                        <li><strong>Statistical Significance:</strong> Multiple runs with different random seeds for statistical validation</li>
-                    </ul>
-                </div>
-                
-                <div class="project-section">
-                    <h3>Results & Performance Analysis</h3>
-                    
-                    <div class="highlight-box">
-                        <h4>Key Performance Summary</h4>
-                        <p>
-                            <strong>Best Result:</strong> SVM with Theta/Beta Ratio features achieved <strong>80.6% accuracy</strong> 
-                            and <strong>77% precision</strong>, demonstrating strong potential for clinical application. 
-                            This performance significantly exceeds chance level (50%) and approaches clinically relevant thresholds.
-                        </p>
-                    </div>
-                    
-                    <h4>Feature-Specific Results</h4>
-                    
-                    <h5>Theta/Beta Ratio Classification (Best Performance)</h5>
-                    <table class="results-table">
-                        <thead>
-                            <tr>
-                                <th>Model</th>
-                                <th>Accuracy</th>
-                                <th>Precision</th>
-                                <th>Clinical Relevance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>KNN</td>
-                                <td>73.2%</td>
-                                <td>75%</td>
-                                <td>Good baseline performance</td>
-                            </tr>
-                            <tr>
-                                <td>Random Forest</td>
-                                <td>77.3%</td>
-                                <td>71%</td>
-                                <td>Strong feature importance insights</td>
-                            </tr>
-                            <tr style="background: rgba(59, 130, 246, 0.1);">
-                                <td><strong>SVM</strong></td>
-                                <td><strong>80.6%</strong></td>
-                                <td><strong>77%</strong></td>
-                                <td><strong>Best overall performance</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    <h5>Alpha Power Classification</h5>
-                    <table class="results-table">
-                        <thead>
-                            <tr>
-                                <th>Model</th>
-                                <th>Accuracy</th>
-                                <th>Precision</th>
-                                <th>Performance Note</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>KNN</td>
-                                <td>63.0%</td>
-                                <td>60%</td>
-                                <td>Moderate discriminative power</td>
-                            </tr>
-                            <tr>
-                                <td>Random Forest</td>
-                                <td>60.6%</td>
-                                <td>54%</td>
-                                <td>Lower performance on alpha features</td>
-                            </tr>
-                            <tr>
-                                <td>SVM</td>
-                                <td>68.0%</td>
-                                <td>67%</td>
-                                <td>Most consistent across features</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    <h5>Slow Wave Activity Classification</h5>
-                    <table class="results-table">
-                        <thead>
-                            <tr>
-                                <th>Model</th>
-                                <th>Accuracy</th>
-                                <th>Precision</th>
-                                <th>Clinical Insights</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>KNN</td>
-                                <td>62.7%</td>
-                                <td>57%</td>
-                                <td>Captures local neural patterns</td>
-                            </tr>
-                            <tr>
-                                <td>Random Forest</td>
-                                <td>67.6%</td>
-                                <td>69%</td>
-                                <td>Good precision for slow waves</td>
-                            </tr>
-                            <tr>
-                                <td>SVM</td>
-                                <td>68.3%</td>
-                                <td>67%</td>
-                                <td>Balanced classification performance</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="project-section">
-                    <h3>Key Findings & Insights</h3>
-                    
-                    <div class="findings-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0;">
-                        <div class="finding-card" style="background: rgba(17, 24, 39, 0.8); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <h4 style="color: #3b82f6; margin-bottom: 1rem;"><i class="fas fa-trophy" style="margin-right: 0.5rem;"></i>Best Performance</h4>
-                            <p>SVM with Theta/Beta Ratio features achieved the highest accuracy (80.6%), demonstrating the clinical relevance of this biomarker.</p>
-                        </div>
-                        <div class="finding-card" style="background: rgba(17, 24, 39, 0.8); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <h4 style="color: #3b82f6; margin-bottom: 1rem;"><i class="fas fa-chart-bar" style="margin-right: 0.5rem;"></i>Feature Ranking</h4>
-                            <p>Theta/Beta Ratio > Slow Wave Activity > Alpha Power in terms of discriminative power for ADHD classification.</p>
-                        </div>
-                        <div class="finding-card" style="background: rgba(17, 24, 39, 0.8); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <h4 style="color: #3b82f6; margin-bottom: 1rem;"><i class="fas fa-robot" style="margin-right: 0.5rem;"></i>Model Consistency</h4>
-                            <p>SVM demonstrated the most consistent performance across all feature types, making it the most reliable classifier.</p>
-                        </div>
-                        <div class="finding-card" style="background: rgba(17, 24, 39, 0.8); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <h4 style="color: #3b82f6; margin-bottom: 1rem;"><i class="fas fa-brain" style="margin-right: 0.5rem;"></i>Neural Signatures</h4>
-                            <p>Frontal and central EEG channels showed the highest discriminative power, aligning with neurobiological understanding of ADHD.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="highlight-box">
-                        <h4>Clinical Significance</h4>
-                        <p>
-                            The 80.6% accuracy achieved with traditional machine learning models demonstrates that EEG-based 
-                            biomarkers can effectively support ADHD diagnosis. This performance level approaches the reliability 
-                            needed for clinical decision support tools, potentially reducing diagnostic subjectivity and improving 
-                            access to objective assessment methods.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="project-section">
-                    <h3>Tools & Technologies</h3>
-                    <div class="project-tech" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: flex-start; margin-top: 1rem;">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Scikit-learn</span>
-                        <span class="tech-tag">SciPy</span>
-                        <span class="tech-tag">NumPy</span>
-                        <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">Matplotlib</span>
-                        <span class="tech-tag">EEG Analysis</span>
-                        <span class="tech-tag">Signal Processing</span>
-                        <span class="tech-tag">Machine Learning</span>
-                        <span class="tech-tag">Cross-Validation</span>
-                    </div>
-                </div>
-                
-                <div class="project-section">
-                    <h3>Future Directions & Clinical Impact</h3>
-                    
+
+                    <h3>What I Built</h3>
+                    <p>
+                        I led a team of three to process EEG recordings from children aged 7–12 (19 channels, 128 Hz) using bandpass filtering, ICA artifact removal, and 2-second epoching. From the cleaned signals, I extracted three neurophysiologically grounded features — Theta/Beta Ratio, Alpha Power, and Slow Wave Activity — and trained SVM, Random Forest, and KNN classifiers on each.
+                    </p>
+
+                    <h3>Results</h3>
+                    <p>
+                        The best model — SVM on Theta/Beta Ratio features — hit <strong>80.6% accuracy</strong>, well above chance and approaching clinically useful thresholds. SVM also proved the most consistent across all three feature types, while frontal and central channels emerged as the strongest predictors, which aligns with what neuroscience tells us about ADHD.
+                    </p>
+
+                    <h3>Impact &amp; Next Steps</h3>
+                    <p>
+                        This work demonstrates that traditional ML, paired with the right biomarkers, can meaningfully support ADHD screening. Going forward, I plan to explore connectivity features and CNN/LSTM architectures to push performance further.
+                    </p>
+
                     <h4>Immediate Next Steps</h4>
                     <ul>
                         <li><strong>Feature Enhancement:</strong> Explore connectivity measures, nonlinear features, and time-frequency analysis for improved discrimination</li>
                         <li><strong>Deep Learning Integration:</strong> Compare traditional models with CNN, LSTM, and EEGNet architectures for potential performance gains</li>
                         <li><strong>Dataset Expansion:</strong> Address current limitations in dataset size and demographic diversity</li>
                     </ul>
-                    
-                    <h4>Clinical Applications</h4>
-                    <ul>
-                        <li><strong>Diagnostic Support:</strong> Develop screening tools to supplement traditional behavioral assessments</li>
-                        <li><strong>Treatment Monitoring:</strong> Track therapeutic response through EEG biomarker changes</li>
-                    </ul>
-                    
-                    <div class="highlight-box">
-                        <h4>Broader Impact</h4>
-                        <p>
-                            This research contributes to the development of objective, data-driven diagnostic tools for ADHD, 
-                            potentially improving diagnostic accuracy and accessibility. The methodology can be extended to other 
-                            neuropsychiatric conditions, advancing the field of computational psychiatry and precision medicine.
-                        </p>
-                    </div>
                 </div>
-                
+
                 <div class="project-section">
                     <h3>References & Resources</h3>
                     <div style="background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.2);">
+                        <h4 style="color: #3b82f6; margin-bottom: 1rem;">Project Links</h4>
+                        <ul style="margin: 0 0 1.5rem 0;">
+                            <li><a href="https://github.com/blvenoise9/EEG-Based-ADHD-Classification" target="_blank" style="color: #3b82f6;"><i class="fab fa-github" style="margin-right: 0.4rem;"></i>GitHub Repository — EEG-Based ADHD Classification</a></li>
+                            <li><a href="EEG-ADHD-Presentation.pptx" download style="color: #3b82f6;"><i class="fas fa-file-powerpoint" style="margin-right: 0.4rem;"></i>Download Presentation Slides (PPTX)</a></li>
+                        </ul>
                         <h4 style="color: #3b82f6; margin-bottom: 1rem;">Scientific Literature</h4>
                         <ul style="margin: 0;">
                             <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11763499/" target="_blank" style="color: #3b82f6;">PMC Article: EEG-Based ADHD Classification Methods</a></li>
@@ -520,10 +302,10 @@
         <div class="container">
             <p>&copy; 2024 Rita Xiong. All rights reserved.</p>
             <div class="social-links">
-                <a href="#" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/yuehan-xiong-0512xxx/" target="_blank" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="#" aria-label="GitHub">
+                <a href="https://github.com/blvenoise9" target="_blank" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
                 <a href="#" aria-label="Kaggle">

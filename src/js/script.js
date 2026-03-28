@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAnimations();
     initializeContactForm();
     initializeStarField();
+    initializeModals();
     console.log('DataPro Analytics Portfolio - System Online');
 });
 
@@ -134,36 +135,7 @@ function updateActiveNavigation() {
 
 // === SCROLL EFFECTS ===
 function initializeScrollEffects() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
-                // Special animations for different elements
-                if (entry.target.classList.contains('stat')) {
-                    animateStats(entry.target);
-                }
-                
-                if (entry.target.classList.contains('skill-item')) {
-                    animateSkillItems(entry.target);
-                }
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements for animation
-    const elements = document.querySelectorAll('.project-card, .skill-category, .stat, .contact-item');
-    elements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.8s ease';
-        observer.observe(el);
-    });
+    // Scroll-in animations removed per design update
 }
 
 // === ANIMATIONS ===
@@ -353,10 +325,93 @@ function initializeStarField() {
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.5s ease';
-    
+
     setTimeout(() => {
         document.body.style.opacity = '1';
+
+        // Open desktop modal after fade-in when returning from a project page
+        if (new URLSearchParams(window.location.search).get('openDesktop') === 'true') {
+            const projectsModal = document.getElementById('projects-modal');
+            if (projectsModal) {
+                projectsModal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            history.replaceState(null, '', window.location.pathname);
+        }
     }, 100);
 });
+
+// === MODALS ===
+function initializeModals() {
+    const aboutModal    = document.getElementById('about-modal');
+    const projectsModal = document.getElementById('projects-modal');
+    const iphoneModal   = document.getElementById('iphone-modal');
+    const notebookBtn   = document.getElementById('notebook-btn');
+    const laptopBtn     = document.getElementById('laptop-btn');
+    const iphoneBtn     = document.getElementById('iphone-btn');
+    const aboutClose    = document.getElementById('about-close');
+    const projectsClose = document.getElementById('projects-close');
+    const iphoneClose   = document.getElementById('iphone-close');
+
+    function openModal(modal) {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (notebookBtn && aboutModal) {
+        notebookBtn.addEventListener('click', () => openModal(aboutModal));
+    }
+    if (laptopBtn && projectsModal) {
+        laptopBtn.addEventListener('click', () => openModal(projectsModal));
+    }
+    if (iphoneBtn && iphoneModal) {
+        iphoneBtn.addEventListener('click', () => openModal(iphoneModal));
+    }
+    if (aboutClose) {
+        aboutClose.addEventListener('click', () => closeModal(aboutModal));
+    }
+    if (projectsClose) {
+        projectsClose.addEventListener('click', () => closeModal(projectsModal));
+    }
+    if (iphoneClose) {
+        iphoneClose.addEventListener('click', () => closeModal(iphoneModal));
+    }
+
+    // Close about modal on backdrop click
+    if (aboutModal) {
+        aboutModal.addEventListener('click', (e) => {
+            if (e.target === aboutModal) closeModal(aboutModal);
+        });
+    }
+
+    // Close projects modal on backdrop click
+    if (projectsModal) {
+        projectsModal.addEventListener('click', (e) => {
+            if (e.target === projectsModal) closeModal(projectsModal);
+        });
+    }
+
+    // Close iPhone modal on backdrop click
+    if (iphoneModal) {
+        iphoneModal.addEventListener('click', (e) => {
+            if (e.target === iphoneModal) closeModal(iphoneModal);
+        });
+    }
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeModal(aboutModal);
+            closeModal(projectsModal);
+            closeModal(iphoneModal);
+        }
+    });
+
+}
 
 console.log('DataPro Analytics Portfolio - All Systems Operational'); 
