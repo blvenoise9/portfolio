@@ -264,12 +264,12 @@
                 <div class="project-section">
                     <h3>Overview</h3>
                     <p>
-                        Server over-provisioning wastes money. Under-provisioning triggers SLA penalties that can cost orders of magnitude more. I built an algorithm that decides — for every upcoming hour — exactly how many servers to activate, balancing electricity costs, memory overhead, and congestion penalties using a principled cost model grounded in queueing theory.
+                        Server over-provisioning wastes money. Under-provisioning triggers SLA penalties that can cost orders of magnitude more. I built an algorithm that decides, for every upcoming hour, exactly how many servers to activate, balancing electricity costs, memory overhead, and congestion penalties using a principled cost model grounded in queueing theory.
                     </p>
 
                     <h3>What I Built</h3>
                     <p>
-                        The system works in two stages. First, it forecasts the arrival rate for the next hour using pre-computed hour-of-day (HOD) statistics derived from historical data — the approach that minimized MAE across all forecasting methods tested. Then, it sizes the server count using a two-step optimization:
+                        The system works in two stages. First, it forecasts the arrival rate for the next hour using pre-computed hour-of-day (HOD) statistics derived from historical data，and I used the approach that minimized MAE across all forecasting methods tested. Then, it sizes the server count using a two-step optimization:
                     </p>
                     <ul>
                         <li><strong>Safety floor</strong> — a minimum server count sized for the worst-case peak within the hour, using a safety buffer of <code>r_safe = r_mean + 2.7 × r_std</code>. The 2.7 coefficient was empirically tuned to achieve 100% coverage of observed hours.</li>
@@ -294,7 +294,7 @@
                             </div>
                             <div class="interp-card">
                                 <h5>Avg Arrivals by Hour of Day</h5>
-                                <p>Demand peaks at hour 16 (~10,400/hr avg) with a smooth bell shape. High variance at peak hours is why a safety buffer is necessary — the mean alone would consistently under-provision.</p>
+                                <p>Demand peaks at hour 16 (~10,400/hr avg) with a smooth bell shape. High variance at peak hours is why a safety buffer is necessary, and the mean alone would consistently under-provision.</p>
                             </div>
                             <div class="interp-card">
                                 <h5>Service Time (CV = 0.473)</h5>
