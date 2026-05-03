@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Server Scheduling - Rita Xiong Portfolio</title>
+    <link rel="stylesheet" href="src/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .project-detail {
+            padding: 60px 0 80px;
+            min-height: 100vh;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .project-hero-image {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 2rem auto;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(17, 24, 39, 0.8);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .meta-item h4 {
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .meta-item p {
+            color: #d1d5db;
+            margin: 0;
+        }
+
+        .project-section {
+            margin-bottom: 3rem;
+        }
+
+        .project-section h3 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0;
+        }
+
+        .project-section h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: #3b82f6;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-section p, .project-section li {
+            color: #d1d5db;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .project-section ul {
+            padding-left: 2rem;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 100px;
+            left: 40px;
+            background: rgba(59, 130, 246, 0.9);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: rgba(59, 130, 246, 1);
+            transform: translateX(-5px);
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.9);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .github-link:hover {
+            background: rgba(59, 130, 246, 1);
+            transform: translateY(-2px);
+        }
+
+        .result-highlight {
+            background: rgba(59, 130, 246, 0.08);
+            border-left: 3px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            color: #d1d5db;
+        }
+
+        .result-highlight strong {
+            color: #93c5fd;
+        }
+
+        .plot-block {
+            margin: 2.5rem 0;
+        }
+
+        .plot-block img {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            display: block;
+        }
+
+        .plot-caption {
+            font-size: 0.8rem;
+            color: #6b7280;
+            text-align: center;
+            margin-top: 0.6rem;
+            font-style: italic;
+        }
+
+        .plot-interpretation {
+            margin-top: 1.25rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .interp-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+        }
+
+        .interp-card h5 {
+            color: #93c5fd;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .interp-card p {
+            color: #9ca3af;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .back-button {
+                position: static;
+                margin: 1rem auto;
+                width: fit-content;
+            }
+
+            .project-content {
+                padding: 1.5rem;
+            }
+
+            .project-meta {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Star Background -->
+    <div class="star-background"></div>
+
+    <a href="index.html?openDesktop=true" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back to Desktop
+    </a>
+
+    <!-- Project Detail -->
+    <section class="project-detail">
+        <div class="container">
+            <div class="project-header">
+                <h1 style="color: #ffffff; font-size: 2.5rem; margin-bottom: 1rem;">
+                    AI-Driven Server Scheduling
+                </h1>
+                <p style="color: #9ca3af; font-size: 1.2rem;">
+                    Cost-optimal server provisioning using queueing theory, dynamic programming, and time-of-day demand forecasting
+                </p>
+
+                <img src="images/ai-scheduling.png" alt="Server infrastructure" class="project-hero-image">
+            </div>
+
+            <div class="project-content">
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <h4>Project Type</h4>
+                        <p>Optimization &amp; Systems</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Domain</h4>
+                        <p>Cloud Infrastructure &amp; Operations Research</p>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3>Overview</h3>
+                    <p>
+                        Server over-provisioning wastes money. Under-provisioning triggers SLA penalties that can cost orders of magnitude more. I built an algorithm that decides — for every upcoming hour — exactly how many servers to activate, balancing electricity costs, memory overhead, and congestion penalties using a principled cost model grounded in queueing theory.
+                    </p>
+
+                    <h3>What I Built</h3>
+                    <p>
+                        The system works in two stages. First, it forecasts the arrival rate for the next hour using pre-computed hour-of-day (HOD) statistics derived from historical data — the approach that minimized MAE across all forecasting methods tested. Then, it sizes the server count using a two-step optimization:
+                    </p>
+                    <ul>
+                        <li><strong>Safety floor</strong> — a minimum server count sized for the worst-case peak within the hour, using a safety buffer of <code>r_safe = r_mean + 2.7 × r_std</code>. The 2.7 coefficient was empirically tuned to achieve 100% coverage of observed hours.</li>
+                        <li><strong>Cost simulation</strong> — a 1-hour discrete-time simulation over candidate server counts near the safety floor, using the M/M/k regime equations to propagate expected queue length N(t) and minimize total cost: electricity + memory + SLA penalty.</li>
+                    </ul>
+                    <p>
+                        The cost function penalizes overflow quadratically, which reflects real-world SLA structures where congestion causes disproportionate harm. The asymmetry drives the algorithm to slightly over-provision rather than risk a single bad hour.
+                    </p>
+
+                    <h3>Exploratory Data Analysis</h3>
+                    <p>
+                        Before designing the algorithm, I ran EDA on 336 hours of arrival data to understand demand patterns, service time distributions, and cost sensitivity to server count.
+                    </p>
+
+                    <div class="plot-block">
+                        <img src="images/eda_plots.png" alt="EDA plots">
+                        <p class="plot-caption">EDA — past_arrivals.csv &nbsp;|&nbsp; 336-hour history</p>
+                        <div class="plot-interpretation">
+                            <div class="interp-card">
+                                <h5>Arrivals per Hour</h5>
+                                <p>Clear daily cycles between ~1,500/hr overnight and ~15,000/hr at peak. The regularity justifies using hour-of-day means as the forecasting baseline.</p>
+                            </div>
+                            <div class="interp-card">
+                                <h5>Avg Arrivals by Hour of Day</h5>
+                                <p>Demand peaks at hour 16 (~10,400/hr avg) with a smooth bell shape. High variance at peak hours is why a safety buffer is necessary — the mean alone would consistently under-provision.</p>
+                            </div>
+                            <div class="interp-card">
+                                <h5>Service Time (CV = 0.473)</h5>
+                                <p>Roughly exponential, supporting the M/M/k model. Slight under-dispersion means the model is conservative — actual queue build-up is a bit milder than predicted.</p>
+                            </div>
+                            <div class="interp-card">
+                                <h5>Inter-Arrival Time (CV = 3.96)</h5>
+                                <p>Highly bursty arrivals, far from Poisson. Bursty traffic causes queue spikes that a standard Poisson model would miss entirely, motivating the α = 2.7 safety buffer.</p>
+                            </div>
+                            <div class="interp-card">
+                                <h5>Cost vs k</h5>
+                                <p>Cost drops sharply at low k (SLA penalties dominate) then flattens once servers are adequate (electricity becomes the marginal cost). This asymmetry drives the algorithm to avoid under-provisioning at all costs.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Results</h3>
+                    <div class="result-highlight">
+                        <strong>Mean cost/hr: $53.75</strong> achieved over a 48-hour held-out window on actual realized arrival rates, with α = 2.7 maintaining 100% SLA coverage and zero catastrophic congestion events.
+                    </div>
+
+                    <div class="plot-block">
+                        <img src="images/backtest_results.png" alt="Backtest results">
+                        <p class="plot-caption">Backtest (DES) &nbsp;|&nbsp; Hours 288–335 &nbsp;|&nbsp; α_buf = 2.7</p>
+                        <div class="plot-interpretation">
+                            <div class="interp-card">
+                                <h5>Cost per Hour</h5>
+                                <p>Most hours fall well below the $53.75 mean, with occasional afternoon spikes to ~$120. No hour shows the runaway SLA penalties seen without buffering, which would reach thousands of dollars.</p>
+                            </div>
+                            <div class="interp-card">
+                                <h5>Actual Arrivals vs Safety Rate</h5>
+                                <p>Actual arrivals stay almost entirely within the r_safe envelope across all 48 backtest hours, confirming that α = 2.7 is correctly calibrated without over-inflating the buffer.</p>
+                            </div>
+                            <div class="interp-card">
+                                <h5>Server Count k per Hour</h5>
+                                <p>k scales from 1–2 servers overnight to 8–9 at afternoon peak, closely tracking the demand cycle. The chosen k rarely deviates from k_safe, validating the safety floor logic.</p>
+                            </div>
+                            <div class="interp-card">
+                                <h5>N_end (Jobs at Hour End)</h5>
+                                <p>Queue length stays bounded between 0 and ~70 throughout, confirming the system remains stable. Queues drain within each hour rather than accumulating over time.</p>
+                            </div>
+                            <div class="interp-card">
+                                <h5>Avg Cost by Hour of Day</h5>
+                                <p>Costs range from ~$15/hr overnight to ~$100/hr at hours 14–16. The afternoon spike reflects both higher server counts and greater arrival variance requiring a larger buffer.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Key Design Decisions</h3>
+                    <ul>
+                        <li><strong>Separating sizing from simulation:</strong> k_safe is computed from the safety rate (worst-case), while the cost simulation uses the point forecast (mean). This prevents over-provisioning caused by using a conservative rate in the simulator.</li>
+                        <li><strong>Peak shape factor (1.497×):</strong> EDA revealed a consistent within-hour ramp-up pattern where the peak 5-minute bin carries 1.497× the hourly mean. Server count is sized for this peak, not the hourly average.</li>
+                        <li><strong>N₀ initialization via steady-state:</strong> Rather than reconstructing queue length through simulation, N₀ is estimated analytically as r_prev / μ_slot — achieving MAE of 0.08 versus MAE of 406 for simulation-based reconstruction.</li>
+                    </ul>
+                </div>
+
+                <a href="https://github.com/blvenoise9" target="_blank" class="github-link">
+                    <i class="fab fa-github"></i>
+                    Explore the Code &amp; Methodology
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Rita Xiong. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/yuehan-xiong-0512xxx/" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/blvenoise9" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="src/js/script.js"></script>
+</body>
+</html>
