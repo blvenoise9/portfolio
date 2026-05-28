@@ -1,0 +1,7 @@
+# Large data files
+inference/*.csv
+inference/__pycache__/
+
+# macOS
+.DS_Store
+images/.DS_Store
