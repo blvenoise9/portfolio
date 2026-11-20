@@ -209,6 +209,32 @@
             margin: 0;
         }
 
+        .plot-link {
+            color: #93c5fd;
+            font-style: normal;
+            text-decoration: underline;
+        }
+
+        .decision-title {
+            color: #93c5fd;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .project-section .formula {
+            margin-top: -0.25rem;
+        }
+
+        .formula code {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.85rem;
+            color: #e5e7eb;
+        }
+
         @media (max-width: 768px) {
             .back-button {
                 position: static;
@@ -250,106 +276,124 @@
             </div>
 
             <div class="project-content">
-                <div class="project-meta">
-                    <div class="meta-item">
-                        <h4>Project Type</h4>
-                        <p>Optimization &amp; Systems</p>
-                    </div>
-                    <div class="meta-item">
-                        <h4>Domain</h4>
-                        <p>Cloud Infrastructure &amp; Operations Research</p>
-                    </div>
-                </div>
 
                 <div class="project-section">
                     <h3>Overview</h3>
                     <p>
-                        Server over-provisioning wastes money. Under-provisioning triggers SLA penalties that cost orders of magnitude more. I built an algorithm that decides, for every upcoming hour, exactly how many servers to activate by balancing electricity costs, memory overhead, and congestion penalties using a principled cost model grounded in queueing theory. This version uses 2,640 hours of real traffic data, a dynamic forecasting model, and a full discrete event simulation backtest over a 30% held-out test window.
+                        Cloud servers need to handle changing traffic without wasting resources. Too few servers can lead to delays and service penalties, while too many increase operating costs. This project developed a server scheduling algorithm that forecasts hourly demand and determines how many servers to activate to balance cost and performance.
                     </p>
 
-                    <h3>What I Built</h3>
+                    <h3>What Was Built</h3>
                     <p>
-                        The system works in two stages. First, it forecasts next-hour arrival rate using a blended estimator — EDA showed <code>r_est = 0.3 × r_last + 0.7 × HOD_mean</code> achieves lower MAE than either pure HOD or pure last-hour alone. HOD statistics are computed dynamically from all observed history, falling back to a static cold-start table before 48 hours of data are available. Then, it sizes the server count with a two-step approach:
+                        Using 2,640 hours of traffic data, the algorithm combines two forecasting methods: recent traffic and historical demand for the same hour of day.
                     </p>
-                    <ul>
-                        <li><strong>Safety floor (hard)</strong> — k_safe = ⌈r_safe × 1.497 / μ_slot / 20⌉, where r_safe = r_mean + α × r_std. The 1.497× peak shape factor accounts for within-hour burst ramp-up observed in EDA. k_safe is a strict floor the algorithm never provisions below.</li>
-                        <li><strong>Cost simulation</strong> — searches [k_safe, k_safe + 2] using the blended point forecast and M/M/k regime equations to minimize total hourly cost: electricity + memory + quadratic SLA penalty.</li>
-                    </ul>
                     <p>
-                        α = 6.0 was selected via a systematic sweep over the 70% training window. α = 5 minimized training cost analytically but left hod=17 vulnerable during test hours — α = 6 adds a small over-provisioning cost to guarantee coverage on the unseen test period.
+                        Based on the forecast, it calculates a minimum server requirement using a safety buffer to account for unexpected traffic spikes. It then evaluates additional server configurations using a queueing model to minimize electricity, memory, and service penalty costs.
+                    </p>
+                    <p>
+                        The safety buffer was tuned using 70% of the dataset, while the remaining 30% was reserved for testing.
                     </p>
 
                     <h3>Exploratory Data Analysis</h3>
                     <p>
-                        EDA ran on 2,640 hours of arrivals to characterize the demand process, validate the M/M/k model assumptions, and calibrate the cost function before any algorithm design.
+                        Traffic analysis revealed clear daily patterns, with demand peaking in the afternoon and dropping overnight. However, requests often arrived in bursts, making average demand alone insufficient for server planning.
+                    </p>
+                    <p>
+                        The analysis also showed that the cost of insufficient capacity was much higher than the cost of running an additional server, supporting the use of a safety buffer.
                     </p>
 
                     <div class="plot-block">
                         <img src="images/eda_plots.png" alt="EDA plots">
-                        <p class="plot-caption">EDA — arrivals.csv &nbsp;|&nbsp; 2,640-hour history (~110 days)</p>
+                        <p class="plot-caption">EDA: 2,640-hour traffic history (~110 days) &nbsp;|&nbsp; <a href="images/eda_plots.png" target="_blank" class="plot-link">View EDA Plots</a></p>
                         <div class="plot-interpretation">
                             <div class="interp-card">
                                 <h5>Arrivals per Hour</h5>
-                                <p>Strong daily cycles across 110 days with clear overnight troughs and midday peaks. The regularity makes hour-of-day means a reliable forecasting baseline across the full dataset.</p>
+                                <p>Traffic follows a clear daily cycle over ~110 days: low overnight, high midday. The typical demand for each hour of day makes a reliable forecasting baseline.</p>
                             </div>
                             <div class="interp-card">
                                 <h5>Avg Arrivals by Hour of Day</h5>
-                                <p>Peak demand falls at hour 16 with a smooth bell-curve shape. High variance at peak hours is exactly why a safety buffer is necessary — the mean alone would systematically under-provision.</p>
+                                <p>Demand peaks around hour 16 (4 PM). Peak hours also vary the most, so planning for the average alone would leave too few servers.</p>
                             </div>
                             <div class="interp-card">
                                 <h5>Service Time (CV = 0.473)</h5>
-                                <p>Slightly under-dispersed relative to exponential, meaning the M/M/k model is conservative. Real queue build-up is milder than predicted, which is the safe direction for the model to err.</p>
+                                <p>Job lengths are more consistent than the M/M/k model assumes, so the model slightly overestimates queues, which is the safe direction to be wrong.</p>
                             </div>
                             <div class="interp-card">
                                 <h5>Inter-Arrival Time (CV = 3.96)</h5>
-                                <p>Highly bursty traffic, far from Poisson. Standard Poisson-calibrated models would miss the burst spikes entirely — this is the primary motivation for the α × std safety buffer.</p>
+                                <p>Requests arrive in bursts rather than evenly. This burstiness is the main reason for the safety buffer (α × std).</p>
                             </div>
                             <div class="interp-card">
                                 <h5>Cost vs k</h5>
-                                <p>Cost drops sharply at low k (quadratic SLA penalty dominates) then flattens as k increases (electricity grows linearly). The asymmetry confirms it is always cheaper to slightly over-provision than to risk a single under-provisioned hour.</p>
+                                <p>Cost falls steeply as servers are added, then rises slowly with electricity. One extra server is cheap; one too few is expensive.</p>
                             </div>
                         </div>
                     </div>
 
                     <h3>Results</h3>
-                    <div class="result-highlight">
-                        Evaluated over 792 held-out hours (hours 1848–2639, 30% test split) using a full Discrete Event Simulation with actual realized arrival rates. The dynamic HOD statistics and blended forecast adapt continuously as new data arrives, with α = 6.0 ensuring robust coverage throughout the test window.
-                    </div>
+                    <p>
+                        The algorithm was tested on 792 unseen hours using discrete event simulation with actual traffic data.
+                    </p>
+                    <p>
+                        The results showed that the system could adjust server capacity throughout the day, typically using one server during lower-demand hours and two during peak periods. Most hours maintained low operating costs, while the safety buffer helped reduce exposure to expensive traffic spikes.
+                    </p>
 
                     <div class="plot-block">
                         <img src="images/backtest_results.png" alt="Backtest results">
-                        <p class="plot-caption">Backtest (DES) &nbsp;|&nbsp; Hours 1848–2639 &nbsp;|&nbsp; α_buf = 6.0 &nbsp;|&nbsp; 70/30 split</p>
+                        <p class="plot-caption">Backtest (discrete event simulation): hours 1848&ndash;2639 &nbsp;|&nbsp; α = 6.0 &nbsp;|&nbsp; 70/30 split &nbsp;|&nbsp; <a href="images/backtest_results.png" target="_blank" class="plot-link">View Backtest Results</a></p>
                         <div class="plot-interpretation">
                             <div class="interp-card">
                                 <h5>Cost per Hour</h5>
-                                <p>Most hours cluster well below the mean. Isolated spikes occur during high-variance hours but never reach the catastrophic levels seen at α = 0 (~$529/hr mean). The daily mean line tracks demand cycles cleanly.</p>
+                                <p>Most hours stay well below the mean. Spikes occur in high-variance hours but never approach the ~$529/hr average seen with no buffer (α = 0).</p>
                             </div>
                             <div class="interp-card">
                                 <h5>Arrivals vs Safety Rate by HOD</h5>
-                                <p>The r_safe threshold sits above observed max arrivals for most hours of the day, confirming α = 6.0 provides sufficient coverage. The few hours where max arrivals approach r_safe validate the buffer is not excessively conservative.</p>
+                                <p>The safety threshold (r_safe) sits above the busiest observed traffic for almost every hour, so α = 6 gives enough coverage without being overly cautious.</p>
                             </div>
                             <div class="interp-card">
                                 <h5>Server Count k by HOD</h5>
-                                <p>k = 1 for most overnight and morning hours, scaling to k = 2 during afternoon peak. The orange bars highlight hours where scaling up is required — precisely the high-variance hours identified in EDA.</p>
+                                <p>One server (k = 1) covers nights and mornings; a second (k = 2) is added for the afternoon peak, matching the high-variance hours found in EDA.</p>
                             </div>
                             <div class="interp-card">
                                 <h5>Cost Distribution</h5>
-                                <p>Right-skewed with most hours at low cost and a small tail of expensive spike hours. The log-scale y-axis shows the majority of hours are far below the mean — the overall score is driven by a small number of high-load hours.</p>
+                                <p>Most hours are cheap. A small number of high-load hours drive most of the total cost (note the log-scale y-axis).</p>
                             </div>
                             <div class="interp-card">
                                 <h5>N_end by HOD</h5>
-                                <p>Mean jobs at hour end stays low and bounded across all hours of the day. The queue drains reliably within each hour, confirming the system stays in the stable exponential regime throughout the test window.</p>
+                                <p>Few jobs are left waiting at the end of each hour, so the queue clears reliably and the system stays stable.</p>
                             </div>
                         </div>
                     </div>
 
                     <h3>Key Design Decisions</h3>
-                    <ul>
-                        <li><strong>Dynamic HOD statistics:</strong> Rather than fixed lookup tables, HOD means and standard deviations are recomputed from all observed arrivals at each scheduling call. The algorithm adapts to shifting traffic patterns over time, with a static cold-start fallback for the first 48 hours.</li>
-                        <li><strong>Blended forecast:</strong> <code>r_est = 0.3 × r_last + 0.7 × HOD_mean</code> outperforms both pure HOD and pure last-hour forecasts on MAE. The 30/70 weighting was selected empirically across the full training window.</li>
-                        <li><strong>α = 6.0 via systematic sweep:</strong> A calibration script swept α from 0 to 15 over training hours using actual arrival counts. α = 5 was analytically optimal but left hod=17 just below the k = 2 threshold — α = 6 guarantees that threshold is met throughout the test period.</li>
-                        <li><strong>N₀ via steady-state:</strong> Initial queue length is estimated as r_prev / μ_slot, the analytical steady-state of the exponential regime. This achieves MAE of 0.08 versus MAE of 406 for simulation-based reconstruction.</li>
-                    </ul>
+                    <h4 class="decision-title">Adaptive Demand Forecasting</h4>
+                    <p>
+                        Combined the previous hour's traffic (30%) with the historical average for the same hour of day (70%). Historical statistics update as new data becomes available, allowing the forecast to adapt over time.
+                    </p>
+                    <p class="formula"><code>r_est = 0.3 &times; r_last + 0.7 &times; HOD_mean</code></p>
+
+                    <h4 class="decision-title">Safety Buffer</h4>
+                    <p>
+                        Used hourly demand variability and a peak traffic adjustment to determine minimum server capacity. A buffer factor of 6 was selected after comparing different values on the training data.
+                    </p>
+                    <p class="formula"><code>r_safe = r_mean + α &times; r_std, &nbsp;α = 6</code></p>
+
+                    <h4 class="decision-title">Cost Optimization</h4>
+                    <p>
+                        Evaluated server counts above the minimum requirement using an M/M/k queueing model, balancing operating expenses against the risk of service penalties.
+                    </p>
+
+                    <h4 class="decision-title">Queue Initialization</h4>
+                    <p>
+                        Estimated the starting queue length using a steady-state approximation rather than reconstructing it through simulation, reducing estimation error.
+                    </p>
+
+                    <h3>Impact &amp; Next Steps</h3>
+                    <p>
+                        The project demonstrates how demand forecasting and optimization can support cost-efficient cloud resource allocation under unpredictable traffic.
+                    </p>
+                    <p>
+                        Future work could include testing against different traffic patterns, incorporating server startup delays, and evaluating the algorithm in a live cloud environment.
+                    </p>
                 </div>
 
                 <a href="https://github.com/blvenoise9" target="_blank" class="github-link">

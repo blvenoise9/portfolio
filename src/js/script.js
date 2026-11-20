@@ -78,6 +78,10 @@ function initializeNavigation() {
         });
     });
 
+    // The pages below have no navbar/hamburger; skip the rest to avoid
+    // null-reference errors on every click and scroll.
+    if (!navbar || !hamburger || !navMenu) return;
+
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
@@ -321,25 +325,21 @@ function initializeStarField() {
     document.head.appendChild(starStyle);
 }
 
-// === SMOOTH LOADING ===
-window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
+// === RETURN TO DESKTOP ===
+// When coming back from a project page (index.html?openDesktop=true), an
+// inline script in index.html's <head> adds `desktop-return` to <html> so the
+// desktop is visible from the very first paint. Here we hand that state over
+// to the normal `.open` class as soon as the DOM is ready — without waiting
+// for every image on the page to finish loading.
+function restoreDesktopIfReturning() {
+    const projectsModal = document.getElementById('projects-modal');
+    if (!projectsModal) return;
+    if (!document.documentElement.classList.contains('desktop-return')) return;
 
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-
-        // Open desktop modal after fade-in when returning from a project page
-        if (new URLSearchParams(window.location.search).get('openDesktop') === 'true') {
-            const projectsModal = document.getElementById('projects-modal');
-            if (projectsModal) {
-                projectsModal.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-            history.replaceState(null, '', window.location.pathname);
-        }
-    }, 100);
-});
+    projectsModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    history.replaceState(null, '', window.location.pathname);
+}
 
 // === MODALS ===
 function initializeModals() {
@@ -359,9 +359,23 @@ function initializeModals() {
     }
 
     function closeModal(modal) {
+        if (!modal) return;
         modal.classList.remove('open');
         document.body.style.overflow = '';
+        if (modal === projectsModal) {
+            document.documentElement.classList.remove('desktop-return');
+        }
     }
+
+    restoreDesktopIfReturning();
+
+    // Remember that the desktop was open when a project folder is clicked, so
+    // the browser's Back button also returns to the desktop (not the hero).
+    document.querySelectorAll('.desktop-folder').forEach(folder => {
+        folder.addEventListener('click', () => {
+            history.replaceState(null, '', window.location.pathname + '?openDesktop=true');
+        });
+    });
 
     if (notebookBtn && aboutModal) {
         notebookBtn.addEventListener('click', () => openModal(aboutModal));

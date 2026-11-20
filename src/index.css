@@ -242,6 +242,8 @@ body {
 
 .hero-description {
     font-size: 1.2rem;
+    max-width: 30em;
+    text-wrap: pretty;
     margin-bottom: 3rem;
     color: #d1d5db;
     line-height: 1.75;
@@ -473,7 +475,24 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+}
+
+/* Pop the desktop in each time it opens (previously the animation only ran
+   once at page load, while the modal was still invisible). */
+.modal-overlay.open .desktop-screen {
     animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Returning from a project page: show the desktop immediately, with no fade
+   or pop, so the hero screen never flashes underneath it. */
+.desktop-return #projects-modal {
+    opacity: 1;
+    pointer-events: all;
+    transition: none;
+}
+
+.desktop-return #projects-modal .desktop-screen {
+    animation: none;
 }
 
 .desktop-menubar {

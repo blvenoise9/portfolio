@@ -161,6 +161,30 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .demo-container {
+            width: 100%;
+            height: 760px;
+            margin: 1.5rem 0 0.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            background: #0d0d0d;
+        }
+
+        .demo-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                height: 560px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -188,36 +212,47 @@
             </div>
 
             <div class="project-content">
-                <div class="project-meta">
-                    <div class="meta-item">
-                        <h4>Project Type</h4>
-                        <p>Manufacturing Analytics</p>
-                    </div>
-                    <div class="meta-item">
-                        <h4>Domain</h4>
-                        <p>Industrial IoT & Quality Control</p>
-                    </div>
-                </div>
 
                 <div class="project-section">
-                    <h3>Overview</h3>
+                    <h3>Project Overview</h3>
                     <p>
-                        Surface defects in precision manufacturing are costly, hard to catch, and typically discovered too late — through manual inspection after the damage is done. I built a data-driven pipeline to detect vibration-induced defects in CNC machining using raw sensor signals, with the goal of flagging defective products before they ever reach inspection.
+                        Surface defects in CNC machining can be difficult to detect through manual inspection alone. This project explores how machine sensor data can be used to identify unusual vibration patterns associated with machining defects and support earlier quality detection.
                     </p>
 
-                    <h3>What I Built</h3>
+                    <h3>What Was Built</h3>
                     <p>
-                        Working with data from a CNC drilling/tapping machine, I analyzed three sensor streams — vibration acceleration, axis position (X, Y, Z), and motor load current — across 30 normal runs, 2 defective runs, and 1 idle baseline run. I handled signal preprocessing, feature engineering in both time and frequency domains, and built a comparative analysis framework to isolate defect-specific patterns from normal operational noise.
+                        The analysis covered 33 CNC machining runs, including 30 normal runs, 2 defective runs, and 1 idle run. Sensor data included vibration acceleration, machine position, and motor load current.
+                    </p>
+                    <p>
+                        After cleaning the data, features were extracted from both time and frequency domains to compare normal and defective machining behavior. Two anomaly detection models, Isolation Forest and One-Class SVM, were also explored to identify unusual operating patterns.
                     </p>
 
                     <h3>Results</h3>
                     <p>
-                        Despite having only 2 defective samples, I identified distinctive frequency-domain vibration signatures and load current anomalies that consistently separated defective runs from normal ones. Using the idle run as a mechanical baseline, I was also able to distinguish cutting-related vibrations from background machine noise — a key step toward reliable detection.
+                        The analysis identified distinct vibration patterns and motor load differences between normal and defective runs. The idle run provided a baseline for separating background machine vibrations from cutting activity.
+                    </p>
+                    <p>
+                        A monitoring framework was developed to compare machining runs, visualize sensor behavior, and flag potential anomalies for further inspection.
                     </p>
 
-                    <h3>Impact &amp; Next Steps</h3>
+                    <h3>Interactive Demo</h3>
                     <p>
-                        This work proves that sensor-based defect detection is feasible even under severe class imbalance — a common reality in industrial settings. The product-level feature profiles I developed lay the groundwork for real-time quality monitoring, early defect flagging, and predictive maintenance. Next, I plan to expand the defect sample pool and explore anomaly detection models to formalize the classification pipeline.
+                        Explore the monitoring framework: compare machining runs, inspect vibration and load signals, and see where the anomaly detection models flag unusual behavior.
+                    </p>
+                    <div class="demo-container">
+                        <iframe src="demos/cnc_twin.html" title="CNC machining monitoring demo" loading="lazy"></iframe>
+                    </div>
+                    <a href="demos/cnc_twin.html" target="_blank" class="github-link">
+                        <i class="fas fa-up-right-from-square"></i>
+                        Open Demo in Full Screen
+                    </a>
+
+                    <h3 style="margin-top: 3rem;">Impact &amp; Next Steps</h3>
+                    <p>
+                        The project provides a foundation for automated quality monitoring using machine sensor data. Further testing with more defective samples and consistent machining conditions is needed to validate detection accuracy.
+                    </p>
+                    <p>
+                        Future work includes expanding the dataset, improving anomaly detection models, and developing real-time monitoring capabilities.
                     </p>
                 </div>
 
@@ -232,19 +267,13 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Rita Xiong. All rights reserved.</p>
+            <p>&copy; 2026 Rita Xiong. All rights reserved.</p>
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/yuehan-xiong-0512xxx/" target="_blank" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
                 <a href="https://github.com/blvenoise9" target="_blank" aria-label="GitHub">
                     <i class="fab fa-github"></i>
-                </a>
-                <a href="#" aria-label="Kaggle">
-                    <i class="fab fa-kaggle"></i>
-                </a>
-                <a href="#" aria-label="Medium">
-                    <i class="fab fa-medium"></i>
                 </a>
             </div>
         </div>

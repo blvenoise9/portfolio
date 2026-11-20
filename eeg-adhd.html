@@ -233,48 +233,39 @@
             </div>
             
             <div class="project-content">
-                <div class="project-meta">
-                    <div class="meta-item">
-                        <h4>Project Type</h4>
-                        <p>Academic Research</p>
-                    </div>
-                    <div class="meta-item">
-                        <h4>Domain</h4>
-                        <p>Neuroscience & Machine Learning</p>
-                    </div>
-                    <div class="meta-item">
-                        <h4>Duration</h4>
-                        <p>4 months</p>
-                    </div>
-                </div>
                 
                 <div class="project-section">
                     <h3>Project Overview</h3>
                     <p>
-                        ADHD is typically diagnosed through subjective behavioral assessments — a process prone to inconsistency and bias. I led a machine learning project to classify ADHD vs. neurotypical individuals using EEG brain signals, with the goal of making diagnosis more objective and data-driven.
+                        ADHD diagnosis relies heavily on behavioral assessments, which can vary between clinicians and patients. This project explored whether machine learning could identify ADHD-related patterns in EEG brain signals to support more objective screening. The project was led as part of a three-person team.
                     </p>
 
-                    <h3>What I Built</h3>
+                    <h3>What Was Built</h3>
                     <p>
-                        I led a team of three to process EEG recordings from children aged 7–12 (19 channels, 128 Hz) using bandpass filtering, ICA artifact removal, and 2-second epoching. From the cleaned signals, I extracted three neurophysiologically grounded features — Theta/Beta Ratio, Alpha Power, and Slow Wave Activity — and trained SVM, Random Forest, and KNN classifiers on each.
+                        EEG recordings from 121 children aged 7 to 12, including 61 with ADHD and 60 without, were processed using bandpass filtering and Independent Component Analysis (ICA) to remove noise and eye-blink artifacts.
+                    </p>
+                    <p>
+                        Features including Theta/Beta Ratio, Alpha Power, Slow Wave Activity, and signal complexity were extracted from the recordings. Three machine learning models, Support Vector Machine (SVM), Random Forest, and K-Nearest Neighbors (KNN), were trained and compared.
+                    </p>
+                    <p>
+                        To ensure reliable evaluation, data was split by participant rather than individual EEG segments, preventing the models from learning patterns specific to children already seen during training.
                     </p>
 
                     <h3>Results</h3>
                     <p>
-                        The best model — SVM on Theta/Beta Ratio features — hit <strong>80.6% accuracy</strong>, well above chance and approaching clinically useful thresholds. SVM also proved the most consistent across all three feature types, while frontal and central channels emerged as the strongest predictors, which aligns with what neuroscience tells us about ADHD.
+                        The best-performing model, SVM using combined EEG features, achieved <strong>76.9% balanced accuracy</strong> and an <strong>AUC of 0.86</strong>. Individual features performed less effectively, with Alpha Power reaching 71% and Theta/Beta Ratio 69% balanced accuracy.
+                    </p>
+                    <p>
+                        The analysis also revealed a significant risk of data leakage. Randomly splitting EEG segments inflated accuracy to 99%, compared with approximately 74% when participants were kept separate. This highlighted the importance of proper evaluation when working with EEG data.
                     </p>
 
                     <h3>Impact &amp; Next Steps</h3>
                     <p>
-                        This work demonstrates that traditional ML, paired with the right biomarkers, can meaningfully support ADHD screening. Going forward, I plan to explore connectivity features and CNN/LSTM architectures to push performance further.
+                        The project demonstrated that EEG signals contain useful patterns for distinguishing ADHD and neurotypical groups, while also highlighting how evaluation methods can affect model performance.
                     </p>
-
-                    <h4>Immediate Next Steps</h4>
-                    <ul>
-                        <li><strong>Feature Enhancement:</strong> Explore connectivity measures, nonlinear features, and time-frequency analysis for improved discrimination</li>
-                        <li><strong>Deep Learning Integration:</strong> Compare traditional models with CNN, LSTM, and EEGNet architectures for potential performance gains</li>
-                        <li><strong>Dataset Expansion:</strong> Address current limitations in dataset size and demographic diversity</li>
-                    </ul>
+                    <p>
+                        Future work includes testing on larger, independent datasets, exploring additional EEG features, and comparing traditional machine learning with deep learning approaches.
+                    </p>
                 </div>
 
                 <div class="project-section">
@@ -300,19 +291,13 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Rita Xiong. All rights reserved.</p>
+            <p>&copy; 2026 Rita Xiong. All rights reserved.</p>
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/yuehan-xiong-0512xxx/" target="_blank" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
                 <a href="https://github.com/blvenoise9" target="_blank" aria-label="GitHub">
                     <i class="fab fa-github"></i>
-                </a>
-                <a href="#" aria-label="Kaggle">
-                    <i class="fab fa-kaggle"></i>
-                </a>
-                <a href="#" aria-label="Medium">
-                    <i class="fab fa-medium"></i>
                 </a>
             </div>
         </div>
